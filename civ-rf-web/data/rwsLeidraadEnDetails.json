@@ -1,0 +1,429 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-07T14:10:07.785Z",
+  "publisher": "Civinaar CIV-RF",
+  "note": "RWS Leidraad Bouwstoffen (maart 2000) + gemeentelijke Standaard Wegenbouwdetails. Leidraad is historisch (Bouwstoffenbesluit); gebruik als materiaalkennis/context, niet als actuele wet. Details = praktijkmaatvoering. Geen CIV-MHR-formulewijziging.",
+  "sources": [
+    {
+      "name": "Leidraad Bouwstoffen Rijkswaterstaat (2000)",
+      "url": null,
+      "localPath": "data2/Om te leren/RWS-Leidraad-en-Wegenbouwdetails/leidraad-bouwstoffen-rws-2000/",
+      "sourceClass": "official-framework",
+      "dated": "2000-03",
+      "caveat": "Historisch; Bouwstoffenbesluit-tijdperk. Check huidige regelgeving / CB'23 / CROW."
+    },
+    {
+      "name": "Standaard Wegenbouwdetails (PME / Stadsontwikkeling)",
+      "url": null,
+      "localPath": "data2/Om te leren/RWS-Leidraad-en-Wegenbouwdetails/standaard-wegenbouwdetails/",
+      "sourceClass": "practice",
+      "dated": "2022-02 / 2025-09"
+    }
+  ],
+  "leidraad": {
+    "title": "Leidraad Bouwstoffen Rijkswaterstaat",
+    "year": 2000,
+    "cards": [
+      {
+        "id": "asfalt",
+        "title": "Asfalt(beton)",
+        "rfCategories": [
+          "Asfalt"
+        ],
+        "familyIds": [
+          "asfalt"
+        ],
+        "summary": "Definitie: en herkomst Definitie Asfalt is een mengsel van mineraal aggregaat, een bitumineus bindmiddel en eventuele toeslagmaterialen (CROW, 1999b). Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "Leidraad Bouwstoffen Rijkswaterstaat- Deel II Bouwstoffenkaarten 17 ASFALT(BETON) Kaartnummer 1 1 Definitie en herkomst Definitie Asfalt is een mengsel van mineraal aggregaat, een bitumineus bindmiddel en eventuele toeslagmaterialen (CROW, 1999b). Voor toepassing in de wegenbouw als wegverharding gelden de volgende begrippen (CROW, 1995a): Hoofdgroep asfaltmengsels: de aanduiding voor de groep waartoe een asfalt- mengsel behoort. In de Standaard RAW Bepalingen 1995, Wijziging 1998 worden de volgende hoofdgroepen onderscheiden: grindasfaltbeton (GAB), steenslagasfaltbeton (STAB), open asfaltbeton (OAB), dicht asfaltbeton (DAB), zeer open asfaltbeton (ZOAB), steenmastiekasfalt (SMA), gietasfalt en emulsie- asfaltbeton. Daarnaast bestaat ook gemodificeerd asfaltbeton, maar deze wordt niet nad"
+      },
+      {
+        "id": "asfaltgranulaat",
+        "title": "Asfaltgranulaat / AGE",
+        "rfCategories": [
+          "Asfalt",
+          "Funderingsmaterialen"
+        ],
+        "familyIds": [
+          "asfalt"
+        ],
+        "summary": "Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "ASFALTGRANULAATCEMENT / -EMULSIE(CEMENT) Kaartnummer 2 -- 13 of 268 -- Leidraad Bouwstoffen Rijkswaterstaat- Deel II Bouwstoffenkaarten 30 Leverancier Eigenaren betreffende werken (voornamelijk wegverhardingen van RWS, provinciale en gemeentelijke overheden) Leveringsvorm Granulaat. Huidige afzet De verwerking/afzet van de totale hoeveelheid vrijkomend oud asfalt was in 1997 als volgt verdeeld (ERS, 1999): - afzet asfalgranulaat voor warm hergebruik bij de productie van nieuw asfalt: circa 640 kton. - afzet AGRAC voor toepassing in gebonden wegfunderingen: circa 570 kton. - afzet TAGRAC voor toepassing in gebonden wegfunderingen: circa 640 kton (ERS, 1999). Verwachte afzet Licht toenemend. 3"
+      },
+      {
+        "id": "betongranulaat",
+        "title": "Betongranulaat",
+        "rfCategories": [
+          "Funderingsmaterialen"
+        ],
+        "familyIds": [
+          "beton"
+        ],
+        "summary": "Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "BETONGRANULAAT Kaartnummer 7 1 Definitie en herkomst Definitie Betonpuin is materiaal verkregen door sloop van betonconstructies (CROW, 1999a). Betongranulaat is aggregaat dat voornamelijk uit betonpuin is bereid, waarbij de hoofdbestanddelen voor tenminste 80% (m/m) moeten bestaan uit gebroken grind- en steenslagbeton, waarvan de korrels een droge dichtheid van tenminste 2.100 kg/m3 bezitten en voor ten hoogste uit 10% (m/m) overig gebroken steen en steenachtig materiaal mogen bestaan, waarvan de korrels een droge dichtheid van ten minste 2.100 kg/m3 bezitten (CROW, 1995), (CROW, 1999a). Herkomst Betongranulaat wordt vervaardigd door het breken en zeven van (door selec- tieve sloop verkrege"
+      },
+      {
+        "id": "menggranulaat",
+        "title": "Menggranulaat",
+        "rfCategories": [
+          "Funderingsmaterialen"
+        ],
+        "familyIds": [
+          "overig"
+        ],
+        "summary": "Indien hydraulisch menggranulaat als vormgegeven bouwstof wordt beoordeeld valt het in categorie 1. Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "MENGGRANULAAT Kaartnummer 21 1 Definitie en herkomst Definitie Hydraulisch menggranulaat is een mengsel van menggranulaat en hydraulisch slakmateriaal dat wordt toegepast in wegfunderingen (CROW, 1999a). Hierbij moet het aandeel van het hydraulisch slakmateriaal in het mengsel ≥ 5% (m/m) en ≤ 20% (m/m) zijn (CROW, 1995). Hydraulisch slakmateriaal moet zijn gegranuleerde hoogovenslak, LD-slak, ELO- slak of een mengsel van voornoemde slakken (CROW, 1995). Herkomst Menggranulaat ontstaat door het breken en zeven van beton- en metselwerk- puin in een bouw- en sloopafvalbewerkingsinrichting (zie bouwstoffenkaart 24). Hydraulisch menggranulaat ontstaat wanneer aan het menggranulaat hydraulisch sla"
+      },
+      {
+        "id": "hoogovenslakken",
+        "title": "Hoogovenslakken",
+        "rfCategories": [
+          "Funderingsmaterialen"
+        ],
+        "familyIds": [
+          "overig"
+        ],
+        "summary": "Categorie 1 bouwstof. Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "d. - E-vliegas: Vliegasunie B.V. - Secundaire toeslagmaterialen: o.a. BSBI’s, Hoogovens. RAW-code 31, 42, 47, 52, 53 Indeling Bouwstoffenbesluit Categorie 1 bouwstof. 2 Beschikbaarheid en levering Omvang productie Jaarlijks circa 40 Mton (RIVM/IWACO, 1998). Producent Betoncentrales en aannemers op de bouwplaats. Leverancier Betoncentrales (branchevereniging: Vereniging van Ondernemingen van Betonmortelfabrikanten in Nederland (VOBN)) Leveringsvorm Als betonspecie/betonmortel. Huidige afzet Jaarlijks circa 40 Mton. Verwachte afzet Geen actuele prognose beschikbaar, maar waarschijnlijk licht toenemend. 3 Materiaaleigenschappen Algemeen Over het algemeen wordt met de term ‘beton’ beton op basis van riviergrind of steenslag (wegenbouw), rivierzand en cement bedoeld. Andere grondstoffen/ toesla"
+      },
+      {
+        "id": "damwand-hout",
+        "title": "Damwand hout",
+        "rfCategories": [
+          "Damwand hout",
+          "Hout constructief"
+        ],
+        "familyIds": [
+          "hout"
+        ],
+        "summary": "Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "aad Bouwstoffen Rijkswaterstaat- Deel II Bouwstoffenkaarten 107 HOUTEN DAMWAND Kaartnummer 10 1 Definitie en herkomst Definitie Een houten damwandplank is een plankvormig element met zodanige profile- ring dat met meerdere planken een wand gevormd kan worden waarin dwars- krachten tussen de elementen overgedragen kunnen worden. Een houten damwandconstructie is een grondkerende constructie bestaande uit een wand, samengesteld uit houten damwandplanken, die onderling gekoppeld zijn door middel van een messing- en groefverbinding. Herkomst In Nederland wordt voor de constructie van houten damwanden gebruik gemaakt van (verduurzaamd) naaldhout of (niet-verduurzaamd) (tropisch) loofhout. In aanmerking komende naaldhoutsoorten zijn Lariks, Grenen en Douglas, afkomstig uit Europa. Toegepaste trop"
+      },
+      {
+        "id": "damwand-staal",
+        "title": "Damwand staal",
+        "rfCategories": [
+          "Staal constructief"
+        ],
+        "familyIds": [
+          "staal"
+        ],
+        "summary": "Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "aad Bouwstoffen Rijkswaterstaat- Deel II Bouwstoffenkaarten 117 STALEN DAMWAND Kaartnummer 11 1 Definitie en herkomst Definitie Een stalen damwandprofiel is een warmgewalst of koudgevormd element van staal, in langsrichting voorzien van verbindingen (sloten) (CUR, 1999a). Een stalen damwandconstructie is een grond- of waterkerende constructie bestaande uit een wand, samengesteld uit stalen damwandprofielen (CUR, 1999a). Stalen damwandelementen hebben veelal een levensduur-verlengende behan- deling ondergaan middels een op het staal aangebrachte coating met als doel het staal te beschermen tegen corrosie (technische reden) of het uiterlijk te verbeteren (esthetische reden). In de natte waterbouw zal verduurzaming van de toe te passen stalen damwandprofielen in het algemeen bestaan uit: - Op"
+      },
+      {
+        "id": "damwand-beton",
+        "title": "Damwand beton",
+        "rfCategories": [
+          "Prefab beton GWW"
+        ],
+        "familyIds": [
+          "beton"
+        ],
+        "summary": "Categorie 1 bouwstof, vormgegeven. Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "ad Bouwstoffen Rijkswaterstaat- Deel II Bouwstoffenkaarten 79 BETONNEN DAMWAND Kaartnummer 6A 1 Definitie en herkomst Definitie Een betonnen damwandelement is een gewapend, eventueel voorgespannen betonnen element met zodanige profilering dat met meerdere planken een wand gevormd kan worden waarin dwarskrachten tussen de elementen overge- dragen kunnen worden. Een betonnen damwandconstructie is een grond- of waterkerende constructie bestaande uit een wand, samengesteld uit betonnen damwandelementen. Herkomst Diverse producenten. RAW-code 41, 52. Indeling Bouwstoffenbesluit Categorie 1 bouwstof, vormgegeven. 2 Beschikbaarheid en levering Omvang productie Niet bekend. Producent Diverse, o.a. Spanbeton BV te Koudekerk a/d Rijn. Leverancier Diverse, o.a. Spanbeton BV te Koudekerk a/d Rijn. Lev"
+      },
+      {
+        "id": "beton",
+        "title": "Beton",
+        "rfCategories": [
+          "Constructiebeton",
+          "Prefab beton GWW"
+        ],
+        "familyIds": [
+          "beton"
+        ],
+        "summary": "Definitie: en herkomst Definitie Beton is een verhard mengsel van cement, water, toeslagmaterialen en even- tueel hulp- en/of vulstoffen (CROW, 1999). Onder colloïdaal beton wordt verstaan beton Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "Rijkswaterstaat- Deel II Bouwstoffenkaarten 57 BETON (incl. colloïdaal beton) Kaartnummer 5 1 Definitie en herkomst Definitie Beton is een verhard mengsel van cement, water, toeslagmaterialen en even- tueel hulp- en/of vulstoffen (CROW, 1999). Onder colloïdaal beton wordt verstaan beton voor toepassing onder water, waarvan de samenhang is verbeterd door een cohesieve hulpstof (CROW, 1999). Onder colloïdaal beton met gesloten structuur wordt verstaan een colloïdaal beton met een luchtgehalte van ten hoogste 5% (V/V). Onder colloïdaal beton met open structuur wordt verstaan een colloïdaal beton waarvan het fijne toeslagmateriaal, als bedoeld in artikel 5.3 van NEN 5950 ‘Voorschriften Beton. Technologie’, geheel of nagenoeg geheel ontbreekt (CROW, 1995) Herkomst - Cement: (dochters van) ENCI."
+      },
+      {
+        "id": "steenslag",
+        "title": "Steenslag",
+        "rfCategories": [
+          "Funderingsmaterialen"
+        ],
+        "familyIds": [
+          "overig"
+        ],
+        "summary": "Definitie: en herkomst Definitie - Steenslag is gebroken natuursteen (CROW, 1999). Natuursteen is gesteente van natuurlijke oorsprong (zoals basalt, grauwacke, gabbro, graniet, porfier en kalksteen). - Kiezelslag is gebroken grind (CROW, 1999). Naar verwachting in het algemeen categorie 1 bouwstof. Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "STEENSLAG (incl. kiezelslag) Kaartnummer 28 1 Definitie en herkomst Definitie - Steenslag is gebroken natuursteen (CROW, 1999). Natuursteen is gesteente van natuurlijke oorsprong (zoals basalt, grauwacke, gabbro, graniet, porfier en kalksteen). - Kiezelslag is gebroken grind (CROW, 1999). Herkomst - Steenslag is met name afkomstig uit groeven in Duitsland, België en Schotland. - Kiezelslag is met name afkomstig uit Nederland en Duitsland (NOVEM/ RIVM, 1992). RAW-code 31. Indeling Bouwstoffenbesluit Naar verwachting in het algemeen categorie 1 bouwstof. 2 Beschikbaarheid en levering Omvang productie - Steenslag: volgens (NOVEM/RIVM, 1992) werd in 1988 7,3 miljoen ton gebroken natuursteen met "
+      },
+      {
+        "id": "zandcement",
+        "title": "Zandcement",
+        "rfCategories": [
+          "Funderingsmaterialen"
+        ],
+        "familyIds": [
+          "overig"
+        ],
+        "summary": "Definitie: en herkomst Definitie Onder zandcement wordt verstaan een mengsel van natuurlijk zand, cement en water (CROW, 1995). Categorie 1- / categorie 2-bouwstof. Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "ZANDCEMENT Kaartnummer 30 1 Definitie en herkomst Definitie Onder zandcement wordt verstaan een mengsel van natuurlijk zand, cement en water (CROW, 1995). Herkomst Voor de herkomst van zand wordt verwezen naar bouwstoffenkaart 29 en voor cement naar bouwstoffenkaart 5. RAW-code 31. Indeling Bouwstoffenbesluit Categorie 1- / categorie 2-bouwstof. 2 Beschikbaarheid en levering Omvang productie Jaarlijks circa 0,3 miljoen ton (RIVM/IWACO, 1998). Producent Onder andere aannemers. Leverancier Diverse leveranciers. Zandcement wordt ‘in-place’ of ‘in-plant’ bereid. Leveringsvorm Zandcement, cement gestabiliseerd zand. Huidige afzet Jaarlijks circa 0,3 miljoen ton. Verwachte afzet Waarschijnlijk gel"
+      },
+      {
+        "id": "geotextiel",
+        "title": "Geotextiel",
+        "rfCategories": [
+          "Overige materialen"
+        ],
+        "familyIds": [
+          "overig"
+        ],
+        "summary": "Bron: Leidraad Bouwstoffen RWS 2000 (historisch; check huidige regelgeving).",
+        "excerpt": "GEOTEXTIELEN Kaartnummer 17 1 Definitie en herkomst Definitie Geokunststoffen zijn producten in de vorm van vliezen (‘non-wovens’), weefsels (‘wovens’), geogrids (rasters), structuurmatten, geomembranen en folies en composieten, die worden toegepast in de grond-, weg- en waterbouw en in de milieutechniek (bijvoorbeeld als afdichting van depots en omsluiting van constructie-onderdelen). Een belangrijke groep binnen de geokunststoffen zijn de geotextielen. Geotextielen zijn textielproducten (vliezen en weefsels), opgebouwd uit kunststof vezels, bandjes, mono- en multifilamentgarens of bandjesgarens (CUR, 1995a), (CUR, 1999b). Voor nadere informatie ten aanzien van (de toepassing van) geokunsts"
+      }
+    ]
+  },
+  "wegenbouwdetails": {
+    "title": "Standaard Wegenbouwdetails",
+    "count": 26,
+    "items": [
+      {
+        "id": "111_rijwegen-in-bestrating",
+        "file": "111_rijwegen-in-bestrating.pdf",
+        "title": "rijwegen in bestrating",
+        "topics": [
+          "bestrating"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "113_materiaalovergang",
+        "file": "113_materiaalovergang.pdf",
+        "title": "materiaalovergang",
+        "topics": [
+          "materiaalovergang"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "114_kruisingen-en-rotondes",
+        "file": "114_kruisingen-en-rotondes.pdf",
+        "title": "kruisingen en rotondes",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "115_rijwegen-in-bestrating-met-hemelwater-infiltratie-voorziening",
+        "file": "115_rijwegen-in-bestrating-met-hemelwater-infiltratie-voorziening.pdf",
+        "title": "rijwegen in bestrating met hemelwater infiltratie voorziening",
+        "topics": [
+          "bestrating"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "117_stadsassen",
+        "file": "117_stadsassen.pdf",
+        "title": "stadsassen",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "121_drempels",
+        "file": "121_drempels.pdf",
+        "title": "drempels",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "122_plateaus",
+        "file": "122_plateaus.pdf",
+        "title": "plateaus",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "131_fietspaden-in-asfalt",
+        "file": "131_fietspaden-in-asfalt.pdf",
+        "title": "fietspaden in asfalt",
+        "topics": [
+          "asfalt",
+          "fietspad"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "132_fietsoversteekplaatsen",
+        "file": "132_fietsoversteekplaatsen.pdf",
+        "title": "fietsoversteekplaatsen",
+        "topics": [
+          "fietspad"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "133_fietspaden-in-bestrating",
+        "file": "133_fietspaden-in-bestrating.pdf",
+        "title": "fietspaden in bestrating",
+        "topics": [
+          "bestrating",
+          "fietspad"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "141_voetpaden-in-bestrating",
+        "file": "141_voetpaden-in-bestrating.pdf",
+        "title": "voetpaden in bestrating",
+        "topics": [
+          "bestrating"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "142_voetpaden-in-asfalt",
+        "file": "142_voetpaden-in-asfalt.pdf",
+        "title": "voetpaden in asfalt",
+        "topics": [
+          "asfalt"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "144_voetgangersoversteekplaatsen",
+        "file": "144_voetgangersoversteekplaatsen.pdf",
+        "title": "voetgangersoversteekplaatsen",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "151_-haaksparkeren-diep-48-m",
+        "file": "151_-haaksparkeren-diep-48-m.pdf",
+        "title": " haaksparkeren diep 48 m",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "152_langsparkeren-diep-18-m",
+        "file": "152_langsparkeren-diep-18-m.pdf",
+        "title": "langsparkeren diep 18 m",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "153_langsparkeren-diep-27-m",
+        "file": "153_langsparkeren-diep-27-m.pdf",
+        "title": "langsparkeren diep 27 m",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "155_langsparkeren-diep-20-m",
+        "file": "155_langsparkeren-diep-20-m.pdf",
+        "title": "langsparkeren diep 20 m",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "171_inrit-personenautos (1)",
+        "file": "171_inrit-personenautos (1).pdf",
+        "title": "inrit personenautos (1)",
+        "topics": [
+          "inrit"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "171_inrit-personenautos",
+        "file": "171_inrit-personenautos.pdf",
+        "title": "inrit personenautos",
+        "topics": [
+          "inrit"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "172_inrit-vrachtautos",
+        "file": "172_inrit-vrachtautos.pdf",
+        "title": "inrit vrachtautos",
+        "topics": [
+          "inrit"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "181_bushalte",
+        "file": "181_bushalte.pdf",
+        "title": "bushalte",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "191_afvalcontainers",
+        "file": "191_afvalcontainers.pdf",
+        "title": "afvalcontainers",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "192_lijnafwatering",
+        "file": "192_lijnafwatering.pdf",
+        "title": "lijnafwatering",
+        "topics": [
+          "afwatering"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "193_trappen",
+        "file": "193_trappen.pdf",
+        "title": "trappen",
+        "topics": [
+          "trappen"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "194_straatmeubilair",
+        "file": "194_straatmeubilair.pdf",
+        "title": "straatmeubilair",
+        "topics": [
+          "straatmeubilair"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      },
+      {
+        "id": "351_boomkratten",
+        "file": "351_boomkratten.pdf",
+        "title": "boomkratten",
+        "topics": [
+          "wegenbouwdetail"
+        ],
+        "note": "Gemeentelijk standaarddetail (PME) — praktijkmaatvoering, geen RF-norm."
+      }
+    ],
+    "typicalHints": [
+      "Trottoirband vaak 180/200×250 mm op stelspecie (min 0,03 / max 0,08 m).",
+      "Betonstraatsteen (b.s.s.) / straatbaksteen (s.b.s.) met zand + steenmengsel fundering.",
+      "Materiaalovergang asfalt ↔ b.s.s./s.b.s.: strekse lagen, funderingsaansluiting documenteren.",
+      "Fietspad asfalt: onderlaag/deklaag, steenmengsel/zand; nabij bomen: geen fijne fractie in puinfundering + geotextiel.",
+      "Uitstaptegels 200×200×80 bij langsparkeren met groen achter parkeerplaats."
+    ]
+  },
+  "civMhr": {
+    "use": "none-formula",
+    "note": "Geen MKI-rekenwaarden overgenomen. Eventueel later: materiaaltypen koppelen aan NMD-keuzehulp (alleen labels)."
+  }
+}

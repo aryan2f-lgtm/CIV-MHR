@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-08-30T13:07:50.405Z",
+  "goldenSetSize": 63,
+  "byFamily": {
+    "asfalt": 10,
+    "baksteen": 10,
+    "beton": 6,
+    "band": 6,
+    "hout": 8,
+    "staal": 5,
+    "kunststof": 3,
+    "groen": 4,
+    "natuursteen": 5,
+    "elektra": 5,
+    "invalid": 1
+  },
+  "labelSourceMix": {
+    "heuristic": 63
+  },
+  "labelConfidenceMix": {
+    "starter": 63
+  },
+  "expertCount": 0,
+  "heuristicCount": 63,
+  "calibrationNote": "RF1 blijft streng (sim>=90, dev<=10, usability>=72): asfalt/baksteen/hout hebben weinig lokale detector-passers op echte Wikimedia-foto's. Herijken pas bij ≥20 expert-labels.",
+  "calibrationVersion": "from-manifest",
+  "honesty": "labelSource=heuristic: schade-ernst en RF-range afgeleid uit titel + expertise.maxRfVisualOnly. Geen expert-gecertificeerde RF. Off-topic items staan in excluded[]. Voor productie-kalibratie: echte NL-straatfoto's met labelConfidence=expert.",
+  "unlabeledInManifest": 0
+}

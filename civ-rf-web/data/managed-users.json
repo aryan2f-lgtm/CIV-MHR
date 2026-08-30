@@ -1,0 +1,14 @@
+﻿{
+  "version": 1,
+  "updatedAt": "2026-08-03T15:45:56.730Z",
+  "users": [
+    {
+      "username": "pilot2025",
+      "passwordHash": "36a8f7cc6bd0611012b2dcd8d5af1749947dff32e8d072949cb122433b825f41",
+      "role": "member",
+      "displayName": "Pilot 2025",
+      "organisation": "Civinaar",
+      "createdAt": "2026-08-03T15:45:56.727Z"
+    }
+  ]
+}
