@@ -1,0 +1,90 @@
+{
+  "generatedAt": "2026-08-10T20:47:19.182Z",
+  "goldenSetSize": 63,
+  "scored": 63,
+  "missingFiles": 0,
+  "familyMatch": {
+    "precision": 0.611,
+    "recall": 0.177,
+    "tp": 11,
+    "fp": 7,
+    "fn": 51
+  },
+  "rfRangeHitRate": 1,
+  "passRate": 0.19,
+  "perFamily": {
+    "asfalt": {
+      "n": 10,
+      "precision": 0,
+      "recall": 0,
+      "rfInRangePct": 100
+    },
+    "baksteen": {
+      "n": 10,
+      "precision": 0,
+      "recall": 0,
+      "rfInRangePct": 100
+    },
+    "beton": {
+      "n": 6,
+      "precision": 1,
+      "recall": 0.667,
+      "rfInRangePct": 100
+    },
+    "band": {
+      "n": 6,
+      "precision": 1,
+      "recall": 0.5,
+      "rfInRangePct": 100
+    },
+    "hout": {
+      "n": 8,
+      "precision": 0,
+      "recall": 0,
+      "rfInRangePct": 100
+    },
+    "staal": {
+      "n": 5,
+      "precision": null,
+      "recall": 0,
+      "rfInRangePct": 100
+    },
+    "kunststof": {
+      "n": 3,
+      "precision": null,
+      "recall": 0,
+      "rfInRangePct": 100
+    },
+    "groen": {
+      "n": 4,
+      "precision": 0,
+      "recall": 0,
+      "rfInRangePct": 100
+    },
+    "natuursteen": {
+      "n": 5,
+      "precision": null,
+      "recall": 0,
+      "rfInRangePct": 100
+    },
+    "elektra": {
+      "n": 5,
+      "precision": 1,
+      "recall": 0.8,
+      "rfInRangePct": 100
+    },
+    "invalid": {
+      "n": 1,
+      "precision": 1,
+      "recall": 1,
+      "rfInRangePct": null
+    }
+  },
+  "calibrationVersion": "2026-08-10-golden-v2",
+  "note": "Golden-set v2 (~60 echte Wikimedia-foto's): RF1 blijft streng (90/10/72). Eval toont zwakke lokale family-recall op asfalt/baksteen/hout — geen versoepeling tot expert NL-straatlabels.",
+  "thresholdSuggestions": [
+    "Families <80% precision (asfalt, baksteen, hout, groen): houd RF1 streng (sim>=90, dev<=10) tot meer reviewed labels.",
+    "Huidige kalibratie 2026-08-10-golden-v2: Golden-set v2 (~60 echte Wikimedia-foto's): RF1 blijft streng (90/10/72). Eval toont zwakke lokale family-recall op asfalt/baksteen/hout — geen versoepeling tot expert NL-straatlabels.",
+    "Voeg echte straatfoto's toe met labelConfidence=reviewed voor schade-ernst en RF-range; herhaal npm run test:golden."
+  ]
+}
