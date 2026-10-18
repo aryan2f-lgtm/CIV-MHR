@@ -11,17 +11,26 @@
 <body>
 <div class="top">
   <div class="brand">
-    <span class="eyebrow">Civinaar · voorcalculatie werkduur</span>
-    <h1 id="title">Urencalculator</h1>
+    <img class="logo" src="src/logo.png" alt="Civinaar">
+    <div>
+      <span class="eyebrow">Civinaar · voorcalculatie werkduur</span>
+      <h1 id="title">Urencalculator</h1>
+    </div>
   </div>
   <div class="bar">
     <select class="proj" id="projSel" aria-label="Kies project"></select>
     <button class="btn" id="bNew">Nieuw project</button>
     <button class="btn" id="bDup">Dupliceren</button>
     <button class="btn danger" id="bDel">Verwijderen</button>
-    <button class="btn primary" id="bXls" hidden>Exporteer Excel</button>
-    <button class="btn primary" id="bOff" hidden>Offerte</button>
+    <button class="btn" id="bXlsIn" type="button">Excel importeren</button>
+    <button class="btn primary" id="bXls" type="button">Excel exporteren</button>
+    <button class="btn" id="bDocIn" type="button">Word importeren</button>
+    <button class="btn primary" id="bDoc" type="button">Word exporteren</button>
+    <button class="btn primary" id="bPdf" type="button">PDF exporteren</button>
+    <button class="btn" id="bOff" type="button">Offerte</button>
     <span class="status" id="saveState"></span>
+    <input id="inXls" type="file" accept=".xlsx,.xls" hidden>
+    <input id="inDoc" type="file" accept=".docx,.doc" hidden>
   </div>
 </div>
 <div class="banner" id="banner" hidden></div>
@@ -35,6 +44,7 @@
       <div class="eyebrow" style="margin-bottom:8px">Omvang en hoeveelheden</div>
       <div class="fgrid" id="fParams"></div>
       <div class="derived" id="derived"></div>
+      <div id="analysis"></div>
     </section>
 
     <section class="panel" aria-labelledby="h-tasks">
@@ -45,14 +55,19 @@
 
     <section class="panel" aria-labelledby="h-rates">
       <header><h2 id="h-rates">Tarieven, medewerkers en scenario's</h2><span class="hint">Marktband: indicatief, o.a. bandbreedte Stougjeswijk 2026</span></header>
+      <div id="staff"></div>
       <div class="tscroll"><table id="tRates"></table></div>
       <div style="height:14px"></div>
       <div class="eyebrow" style="margin-bottom:8px">Scenariofactoren (× marktconforme uren)</div>
       <div class="fgrid" id="fFactors"></div>
+      <div style="height:14px"></div>
+      <div class="eyebrow" style="margin-bottom:8px">Onderdelen in Excel, Word en PDF</div>
+      <div id="exportSel" class="checks-grid"></div>
       <div style="height:10px"></div>
       <details class="help"><summary>Hoe rekent de calculator?</summary>
         <p>Elke taak heeft normuren per rol, per eenheid (vast, A1-blad, 100 m riool, overleg, week). Het aantal eenheden volgt uit de projectgegevens: het aantal A1-bladen bijvoorbeeld uit lengte en oppervlak bij de gekozen schaal.</p>
-        <p>Tekenuren per A1-blad komen uit jullie Tekenuren-tabel (medior). Junior tekent 35% langer, senior 25% korter. Eenvoudig project: −35%, complex: +65% op ontwerptaken.</p>
+        <p>De normuren zijn voor een medior. Junior heeft 35% meer uren nodig, senior 25% minder. Dat geldt per medewerker, voor elke rol. Staat een rol uit, dan vallen die uren uit de begroting. Meerdere mensen in dezelfde rol verdelen het werk.</p>
+        <p>De complexiteit volgt uit de omvang, het riool, de fasering en het type. Je kunt die analyse volgen of zelf kiezen. Aangevinkte risico's verhogen de uren met het percentage dat erbij staat.</p>
         <p>De vier scenario's zijn factoren op de marktconforme uren. De begroting rondt af op hele uren, zo dat taken, fasen en rollen op hetzelfde totaal uitkomen. De overschrijdingskans komt uit 3.000 simulaties waarvan de mediaan op de marktconforme uren ligt: het hele project kan mee- of tegenvallen (±15%), en elke taak apart ook, overleg en vergunningen het meest.</p><p>Hergebruik: staat de VO-situatietekening aan, dan kost de DO-situatietekening 30% minder (hetzelfde geldt voor de profielen). Staat de DO-tekening aan, dan kosten de bestekstekeningen 40% minder.</p><p>Aantal A1-bladen (per half blad): bij een wijk of groenproject telt het oppervlak, bij een straat of riool ook de lengte. Zonder hoeveelheid is het aantal bladen 0. Klopt het niet, vul het aantal bladen zelf in.</p>
         <p>Kwaliteitscontrole (vier-ogen) is een vast percentage van de ontwerpuren (SO t/m bestek), verdeeld over de rollen bij die taak.</p>
       </details>
@@ -76,8 +91,12 @@
   <div class="sheet" id="offerte" role="dialog" aria-modal="true" aria-labelledby="offTitle"></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="src/logo.js"></script>
 <script src="src/kengetallen.js"></script>
+<script src="src/export.js"></script>
 <script src="src/app.js"></script>
 </body>
 </html>

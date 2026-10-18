@@ -129,6 +129,29 @@ const REUSE={do1:['vo1',.7],do2:['vo2',.7],uo1:['do1',.6],uo2:['do2',.6]};
 const SCALES={'1:100':[80,4000],'1:200':[160,16000],'1:250':[200,25000],'1:500':[400,100000]};
 const CPLX={eenvoudig:.65,gemiddeld:1,complex:1.65};
 const LEVEL={junior:1.35,medior:1,senior:.75};
+const LEVEL_NAME={junior:'Junior (+35%)',medior:'Medior',senior:'Senior (−25%)'};
+// [id, naam, extra procent op de uren als het risico aan staat]
+const RISKS=[
+ ['klic','Kabels en leidingen wijken af',8],
+ ['bodem','Bodem, PFAS of zetting valt tegen',6],
+ ['verg','Vergunning duurt langer dan gedacht',10],
+ ['bewoners','Extra participatie door weerstand',5],
+ ['fasering','Fasering of bereikbaarheid is lastiger',8],
+ ['beheer','Beheerder stelt extra eisen',6],
+ ['ontwerp','Ontwerp moet deels over',12],
+];
+const EXPORT_PARTS=[
+ ['logo','Logo'],
+ ['project','Projectgegevens'],
+ ['markt','Marktconform-controle'],
+ ['uitgang','Uitgangspunten'],
+ ['complex','Complexiteit en risico’s'],
+ ['taken','Taken'],
+ ['fasen','Fasen'],
+ ['rollen','Medewerkers'],
+ ['bedragen','Bedragen'],
+ ['btw','Btw'],
+];
 const TYPES={
  wijk:'Nieuwbouwwijk (bouwrijp/woonrijp)',
  herinr:'Herinrichting bestaande straat',

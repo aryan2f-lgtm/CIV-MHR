@@ -14,8 +14,58 @@ function newProject(type='wijk',name='Nieuw project'){
   const p={id:uid(),naam:name,opdrachtgever:'',nummer:'',opsteller:'',datum:new Date().toISOString().slice(0,10),
     type,schaal:'1:250',cplx:'gemiddeld',niveau:'medior',geldig:30,params,phases:{},tasks:{},
     rates:Object.fromEntries(ROLES.map(r=>[r[0],r[2]])),people:{},actual:{},
-    factors:{scherp:.75,laag:.88,markt:1,ruim:1.2},chosen:'laag',updated:Date.now()};
-  applyType(p,type);return p;
+    factors:{scherp:.75,laag:.88,markt:1,ruim:1.2},chosen:'markt',cplxAuto:true,updated:Date.now()};
+  applyType(p,type);ensureStaff(p);return p;
+}
+function ensureStaff(p){
+  if(!p.roleOn)p.roleOn={};
+  for(const[id] of ROLES)if(p.roleOn[id]===undefined)p.roleOn[id]=true;
+  if(!Array.isArray(p.staff)||!p.staff.length){
+    p.staff=ROLES.map(([id])=>({id:uid(),role:id,on:true,naam:(p.people&&p.people[id])||'',niveau:id==='tek'?(LEVEL[p.niveau]?p.niveau:'medior'):'medior'}));
+  }
+  for(const[id] of ROLES)if(!p.staff.some(s=>s.role===id))p.staff.push({id:uid(),role:id,on:true,naam:'',niveau:'medior'});
+  if(!p.actual)p.actual={};
+  for(const[role,hrs] of Object.entries(p.actual)){
+    if(!ROLES.some(r=>r[0]===role))continue;
+    const first=p.staff.find(s=>s.role===role);
+    if(first&&p.actual[first.id]==null&&hrs){p.actual[first.id]=hrs;delete p.actual[role]}
+  }
+  if(!p.risks)p.risks={};
+  if(!p.exportSel)p.exportSel=Object.fromEntries(EXPORT_PARTS.map(x=>[x[0],true]));
+  for(const[id] of EXPORT_PARTS)if(p.exportSel[id]===undefined)p.exportSel[id]=true;
+  if(p.cplxAuto===undefined)p.cplxAuto=p.cplx!=='eenvoudig'&&p.cplx!=='complex';
+}
+function analyseProject(p){
+  const P=p.params||{};
+  let score=0;const reasons=[];
+  if((+P.opp||0)>=60000||(+P.straat||0)>=4000){score+=2;reasons.push('Zeer grote omvang')}
+  else if((+P.opp||0)>=20000||(+P.straat||0)>=1500){score+=1;reasons.push('Stevige omvang')}
+  else reasons.push('Beperkte omvang');
+  if((+P.riool||0)>=5000){score+=2;reasons.push('Uitgebreid rioolstelsel')}
+  else if((+P.riool||0)>=1500){score+=1;reasons.push('Riool hoort bij het werk')}
+  if((+P.fasen||0)>=4){score+=2;reasons.push('Veel uitvoeringsfasen')}
+  else if((+P.fasen||0)>=3){score+=1;reasons.push('Meerdere uitvoeringsfasen')}
+  if((+P.vergunningen||0)>=5){score+=1;reasons.push('Veel vergunningen')}
+  if((+P.bijeen||0)>=3||(+P.derden||0)>=8){score+=1;reasons.push('Veel overleg en participatie')}
+  if(p.type==='herinr'||p.type==='riool'){score+=1;reasons.push('Bestaande situatie met raakvlakken')}
+  if(p.type==='klein'&&(+P.opp||0)<8000)score=Math.max(0,score-1);
+  const niveau=score<=1?'eenvoudig':score>=4?'complex':'gemiddeld';
+  const suggest=[];
+  if((+P.riool||0)>0||p.type==='riool'||p.type==='herinr')suggest.push('klic');
+  if((+P.riool||0)>500||p.type==='wijk')suggest.push('bodem');
+  if((+P.vergunningen||0)>=2)suggest.push('verg');
+  if((+P.bijeen||0)>=1||(+P.woningen||0)>=50)suggest.push('bewoners');
+  if((+P.fasen||0)>=2)suggest.push('fasering');
+  if(p.type==='herinr'||p.type==='riool')suggest.push('beheer');
+  return{score,niveau,reasons,suggest};
+}
+function riskFactor(p){
+  let pct=0;for(const[id,,pc] of RISKS)if(p.risks&&p.risks[id])pct+=pc;
+  return{pct,factor:1+pct/100};
+}
+function activeStaff(p,role){
+  if(p.roleOn&&p.roleOn[role]===false)return[];
+  return (p.staff||[]).filter(s=>s.role===role&&s.on);
 }
 function applyType(p,type){
   p.type=type;p.phases={};p.tasks={};
@@ -66,9 +116,11 @@ function blankScen(){
   return scen;
 }
 function compute(p){
+  ensureStaff(p);
   const P=Object.fromEntries(Object.entries(p.params).map(([k,v])=>[k,+v||0]));
-  const d=derive(p),cf=CPLX[p.cplx]||1,lv=LEVEL[p.niveau]||1;
-  const rows=[];let designTot=0;
+  const d=derive(p),analyse=analyseProject(p),cplx=p.cplxAuto?analyse.niveau:(p.cplx||'gemiddeld');
+  const cf=CPLX[cplx]||1,rf=riskFactor(p);
+  const rows=[];
   for(const t of TASKS){
     const[id,ph,name,unit,norms,cs,u]=t;const st=p.tasks[id]||{on:true,qty:null,corr:0};
     const active=!!p.phases[ph]&&!!st.on;
@@ -79,40 +131,64 @@ function compute(p){
     const corr=1+(+st.corr||0)/100;
     if(unit!=='pct'){
       for(const[r,n] of Object.entries(norms)){
-        const v=Math.max(0,n*(+qty||0)*reuse*(cs?cf:1)*(r==='tek'?lv:1)*corr);
+        const v=Math.max(0,n*(+qty||0)*reuse*(cs?cf:1)*corr*rf.factor);
         if(v)byRole[r]=v;h+=v;
       }
-      if(active&&DESIGN.includes(ph))designTot+=h;
     }
-    rows.push({id,ph,name,unit,auto,qty,byRole,h,exact:h,active,u,st,norms,cs,reuse,cf:cs?cf:1,lv,corr});
+    rows.push({id,ph,name,unit,auto,qty,byRole,h,exact:h,active,u,st,norms,cs,reuse,cf:cs?cf:1,rf:rf.factor,corr});
   }
+  const cells=[];
+  function applyPeople(r){
+    if(!r.active){r.h=0;r.exact=0;return}
+    const src=r.byRole;r.exact=0;const next={};
+    for(const[role,v] of Object.entries(src)){
+      const people=activeStaff(p,role);
+      if(!people.length||v<=0)continue;
+      for(const person of people){
+        const exact=v/people.length*(LEVEL[person.niveau]||1);
+        next[role]=(next[role]||0)+exact;r.exact+=exact;
+        cells.push({key:r.id+'|'+role+'|'+person.id,task:r.id,role,person:person.id,ph:r.ph,exact});
+      }
+    }
+    r.byRoleExact=src;r.byRole=next;r.h=r.exact;
+  }
+  for(const r of rows)if(r.unit!=='pct')applyPeople(r);
+  let designTot=0;
+  for(const r of rows)if(r.active&&r.unit!=='pct'&&DESIGN.includes(r.ph))designTot+=r.exact;
   const kw=rows.find(r=>r.unit==='pct');
   if(kw){
     const weights=Object.entries(kw.norms),wsum=weights.reduce((s,[,n])=>s+n,0)||1;
     const base=Math.max(0,designTot*((P.kwPct||0)/100)*kw.corr);
-    kw.byRole={};kw.h=0;kw.exact=0;
+    kw.byRole={};kw.h=0;kw.exact=0;kw.qty=designTot;
     for(const[r,n] of weights){const v=base*(n/wsum);if(v)kw.byRole[r]=v;kw.h+=v}
-    kw.exact=kw.h;kw.qty=designTot;
+    kw.exact=kw.h;
+    applyPeople(kw);
   }
-  const cells=[];
-  for(const r of rows){if(!r.active)continue;for(const[k,v] of Object.entries(r.byRole))if(v>0)cells.push({key:r.id+'|'+k,task:r.id,role:k,ph:r.ph,exact:v})}
   const exactMid=cells.reduce((s,c)=>s+c.exact,0);
   const exactCost=cells.reduce((s,c)=>s+c.exact*(+p.rates[c.role]||0),0);
   const exactDesign=cells.filter(c=>c.ph!=='uitv').reduce((s,c)=>s+c.exact*(+p.rates[c.role]||0),0);
   const scen=blankScen();
   for(const[k] of SCEN){
     const f=+p.factors[k]||0,target=Math.round(exactMid*f),alloc=hamilton(cells,target);
-    const role={},phase={};let cost=0;
-    for(const c of cells){const n=alloc[c.key]||0;if(!n)continue;role[c.role]=(role[c.role]||0)+n;phase[c.ph]=(phase[c.ph]||0)+n;cost+=n*(+p.rates[c.role]||0)}
-    scen[k]={f,hours:target,cost,design:exactDesign*f,exactHours:exactMid*f,role,phase,risk:0,alloc};
+    const role={},phase={},person={};let cost=0;
+    for(const c of cells){const n=alloc[c.key]||0;if(!n)continue;role[c.role]=(role[c.role]||0)+n;phase[c.ph]=(phase[c.ph]||0)+n;person[c.person]=(person[c.person]||0)+n;cost+=n*(+p.rates[c.role]||0)}
+    scen[k]={f,hours:target,cost,design:exactDesign*f,exactHours:exactMid*f,role,phase,person,risk:0,alloc};
   }
   for(const r of rows){
-    r.byRoleExact=r.byRole;r.byRole={};r.scen={};
-    if(!r.active){r.h=0;r.exact=r.exact||0;continue}
+    const base=r.byRoleExact||r.byRole;r.byRole={};r.scen={};
+    if(!r.active){r.h=0;continue}
     let h=0;
-    for(const[k] of Object.entries(r.byRoleExact)){const n=scen.markt.alloc[r.id+'|'+k]||0;if(n){r.byRole[k]=n;h+=n}}
+    for(const role of Object.keys(base)){
+      let n=0;
+      for(const c of cells)if(c.task===r.id&&c.role===role)n+=scen.markt.alloc[c.key]||0;
+      if(n){r.byRole[role]=n;h+=n}
+    }
     r.h=h;
-    for(const[k] of SCEN){let sh=0;for(const role of Object.keys(r.byRoleExact))sh+=scen[k].alloc[r.id+'|'+role]||0;r.scen[k]=sh}
+    for(const[k] of SCEN){
+      let sh=0;
+      for(const c of cells)if(c.task===r.id)sh+=scen[k].alloc[c.key]||0;
+      r.scen[k]=sh;
+    }
   }
   const role=scen.markt.role,mid=exactMid,cost=exactCost,designCost=exactDesign;
   const act=rows.filter(r=>r.active&&r.exact>0);const N=3000;const sims=new Float64Array(N);
@@ -137,7 +213,19 @@ function compute(p){
     if(task&&pre&&taskOn(p,id)&&!taskOn(p,pred))warns.push(task[2]+': geen hergebruik, omdat "'+pre[2]+'" uit staat.');
   }
   const bouwsom=P.bouwsom>0?P.bouwsom:P.opp*P.eurM2;
-  return{rows,role,mid,cost,designCost,scen,d,P,bouwsom,bouwsomEst:!(P.bouwsom>0),audit,warns};
+  const off=ROLES.filter(([id])=>p.roleOn[id]===false).map(([,name])=>name);
+  if(off.length)warns.push('Niet nodig: '+off.join(', ')+'. Die uren zitten niet in de begroting.');
+  return{rows,role,mid,cost,designCost,scen,d,P,bouwsom,bouwsomEst:!(P.bouwsom>0),audit,warns,analyse,cplx,riskPct:rf.pct};
+}
+function marktStatus(p,R){
+  const issues=[];
+  const f=+p.factors.markt;
+  if(!Number.isFinite(f)||Math.abs(f-1)>0.001)issues.push('De factor Marktconform is '+(Number.isFinite(f)?String(f).replace('.',','):'leeg')+' in plaats van 1,00.');
+  const outside=ROLES.filter(r=>{const h=R.role[r[0]]||0,v=+p.rates[r[0]];return h>0&&(v<r[3]||v>r[4])});
+  if(outside.length)issues.push('Tarief buiten de marktband: '+outside.map(r=>r[1]).join(', ')+'.');
+  if(!R.audit.ok)issues.push('De urenoptelling sluit niet.');
+  const chosen=p.chosen==='markt';
+  return{basisOk:!issues.length,chosenOk:chosen&&!issues.length,issues,marktHours:R.scen.markt.hours,marktCost:R.scen.markt.cost};
 }
 
 /* ---------- opslag ---------- */
@@ -179,8 +267,7 @@ function renderProject(){
     field('Datum',inp('pDat',p.datum,v=>{p.datum=v;scheduleSave()},'date')),
     field('Type project',sel('pType',p.type,TYPES,v=>{applyType(p,v);toast('Takenpakket aangepast aan '+TYPES[v].toLowerCase());scheduleSave();renderAll()})),
     field('Tekenschaal situatie',sel('pSchaal',p.schaal,Object.fromEntries(Object.keys(SCALES).map(k=>[k,k])),v=>{p.schaal=v;scheduleSave();recalc()})),
-    field('Complexiteit',sel('pCplx',p.cplx,{eenvoudig:'Eenvoudig (−35%)',gemiddeld:'Gemiddeld',complex:'Complex (+65%)'},v=>{p.cplx=v;scheduleSave();recalc()})),
-    field('Niveau tekenaar',sel('pLvl',p.niveau,{junior:'Junior (+35%)',medior:'Medior',senior:'Senior (−25%)'},v=>{p.niveau=v;scheduleSave();recalc()})),
+    field('Complexiteit',sel('pCplx',p.cplxAuto?'auto':p.cplx,{auto:'Volg de analyse',eenvoudig:'Zelf: eenvoudig (−35%)',gemiddeld:'Zelf: gemiddeld',complex:'Zelf: complex (+65%)'},v=>{if(v==='auto')p.cplxAuto=true;else{p.cplxAuto=false;p.cplx=v}scheduleSave();renderAll()})),
     field('Offerte geldig (dagen)',inp('pGeld',p.geldig??30,v=>{p.geldig=v===''?30:+v;scheduleSave()},'number',{min:1,step:1})),
   );
   const g=$('#fParams');g.textContent='';
@@ -222,8 +309,14 @@ function renderPhases(R){
               const bits=[nf1.format(v),'×',nf1.format(+r.qty||0)];
               if(r.reuse!==1)bits.push('×',nf1.format(r.reuse));
               if(r.cs&&r.cf!==1)bits.push('×',nf1.format(r.cf));
-              if(k==='tek'&&r.lv!==1)bits.push('×',nf1.format(r.lv));
+              if(r.rf&&r.rf!==1)bits.push('×',nf1.format(r.rf));
               if(r.corr!==1)bits.push('×',nf1.format(r.corr));
+              const people=activeStaff(cur,k);
+              if(people.length){
+                const lv=people.reduce((s,x)=>s+(LEVEL[x.niveau]||1),0)/people.length;
+                if(people.length!==1)bits.push('÷',String(people.length),'mensen');
+                if(Math.abs(lv-1)>0.001)bits.push('×',nf1.format(lv),'niveau');
+              }
               return RN[k]+' '+bits.join(' ');
             }).join(' · ')+(r.active?' = '+nf1.format(r.exact)+' u':'');
         const qtyCell=r.unit==='pct'?el('span',{class:'unit'},nf1.format(+cur.params.kwPct||0)+'% van '+nf0.format(r.qty)+' u')
@@ -270,23 +363,83 @@ function renderScen(R){
   bar.textContent=a.ok
     ?'Marktconforme uren sluiten op '+nf0.format(a.hours)+' uur. Taken, fasen en rollen geven hetzelfde totaal. Exact '+nf1.format(a.exact)+' uur.'
     :'De optelling sluit niet: taken '+nf0.format(a.taskSum)+', fasen '+nf0.format(a.phaseSum)+', rollen '+nf0.format(a.roleSum)+'.';
+  const st=marktStatus(cur,R);
+  row('Rekenbasis marktconform',st.basisOk?'ja · '+nf0.format(st.marktHours)+' u · '+eur(st.marktCost):'nee',st.basisOk?'flag ok':'flag bad');
+  if(!st.chosenOk)row('Aangeboden scenario',(SCEN.find(s=>s[0]===cur.chosen)||['','Onbekend'])[1]+' · niet marktconform','flag');
+  else row('Aangeboden scenario','Marktconform','flag ok');
+  for(const issue of st.issues)row('Afwijking',issue,'flag bad');
 }
 function renderPeople(R){
-  const t=$('#tPeople');t.textContent='';const ch=cur.chosen;
-  const head=el('tr',{},el('th',{},'Rol'),...SCEN.map(([k,l])=>el('th',{class:'n'+(k===ch?' sel':'')},k==='markt'?'Markt':l)),el('th',{class:'n'},'Werkelijk'));
+  const t=$('#tPeople');t.textContent='';const ch=cur.chosen;ensureStaff(cur);
+  const head=el('tr',{},el('th',{},'Medewerker'),...SCEN.map(([k,l])=>el('th',{class:'n'+(k===ch?' sel':'')},k==='markt'?'Markt':l)),el('th',{class:'n'},'Werkelijk'));
   const tb=el('tbody');let tot={},totA=0;
-  for(const[k,name] of ROLES){
-    const any=SCEN.some(([s])=>(R.scen[s].role[k]||0)>0);if(!any&&!(cur.actual[k]>0))continue;
-    const a=+cur.actual[k]||0;totA+=a;
-    const budget=R.scen[ch].role[k]||0;
-    const cells=SCEN.map(([s])=>{const v=R.scen[s].role[k]||0;tot[s]=(tot[s]||0)+v;return el('td',{class:'n'+(s===ch?' sel':'')},nf0.format(v))});
+  for(const s of cur.staff){
+    const any=SCEN.some(([k])=>((R.scen[k].person||{})[s.id]||0)>0);if(!any&&!(cur.actual[s.id]>0))continue;
+    const a=+cur.actual[s.id]||0;totA+=a;
+    const budget=(R.scen[ch].person||{})[s.id]||0;
+    const cells=SCEN.map(([k])=>{const v=(R.scen[k].person||{})[s.id]||0;tot[k]=(tot[k]||0)+v;return el('td',{class:'n'+(k===ch?' sel':'')},nf0.format(v))});
     const dev=a>0&&budget>0?el('div',{class:'dev '+(Math.abs(a/budget-1)>.15?'flag':'flag ok')},(a>=budget?'+':'')+nf0.format((a/budget-1)*100)+'%'):null;
-    tb.append(el('tr',{},el('td',{},el('div',{},name),cur.people[k]?el('div',{class:'hint'},cur.people[k]):null),...cells,
-      el('td',{class:'n'},el('input',{class:'mini',type:'number',min:0,step:'any',id:'act_'+k,value:cur.actual[k]||'',placeholder:'–','aria-label':'Werkelijke uren '+name,style:'width:58px',onchange:e=>{cur.actual[k]=e.target.value===''?0:+e.target.value;scheduleSave();recalc()}}),dev)));
+    const label=(RN[s.role]||s.role)+(s.naam?' · '+s.naam:'')+' · '+(LEVEL_NAME[s.niveau]||s.niveau);
+    tb.append(el('tr',{},el('td',{},label),...cells,
+      el('td',{class:'n'},el('input',{class:'mini',type:'number',min:0,step:'any',id:'act_'+s.id,value:cur.actual[s.id]||'',placeholder:'–','aria-label':'Werkelijke uren '+label,style:'width:58px',onchange:e=>{cur.actual[s.id]=e.target.value===''?0:+e.target.value;scheduleSave();recalc()}}),dev)));
   }
   tb.append(el('tr',{class:'tot'},el('td',{},'Totaal uren'),...SCEN.map(([s])=>el('td',{class:'n'+(s===ch?' sel':'')},nf0.format(tot[s]||0))),el('td',{class:'n'},totA?nf0.format(totA):'')));
-  tb.append(el('tr',{},el('td',{},'Totaal €'),...SCEN.map(([s])=>el('td',{class:'n'+(s===ch?' sel':'')},eur(R.scen[s].cost))),el('td',{class:'n'},totA?eur(ROLES.reduce((a,[k])=>a+(+cur.actual[k]||0)*(+cur.rates[k]||0),0)):'')));
+  const actualCost=cur.staff.reduce((sum,s)=>sum+(+cur.actual[s.id]||0)*(+cur.rates[s.role]||0),0);
+  tb.append(el('tr',{},el('td',{},'Totaal €'),...SCEN.map(([s])=>el('td',{class:'n'+(s===ch?' sel':'')},eur(R.scen[s].cost))),el('td',{class:'n'},totA?eur(actualCost):'')));
   t.append(el('thead',{},head),tb);
+}
+function renderAnalysis(R){
+  const box=$('#analysis');if(!box)return;box.textContent='';ensureStaff(cur);
+  const a=R.analyse,names={eenvoudig:'eenvoudig',gemiddeld:'gemiddeld',complex:'complex'};
+  const used=cur.risks?RISKS.filter(r=>cur.risks[r[0]]):[];
+  box.append(el('div',{class:'analysis'},
+    el('strong',{},'Analyse'),
+    el('p',{},'Op basis van omvang en samenstelling oogt dit project '+names[a.niveau]+' (score '+a.score+'). '+(cur.cplxAuto?'Die analyse stuurt de uren.':'Je hebt zelf '+names[R.cplx]+' gekozen.')),
+    el('p',{},a.reasons.join(' · ')+'.'),
+    el('p',{},'Risico’s die hier kunnen meespelen: '+(a.suggest.length?a.suggest.map(id=>RISKS.find(r=>r[0]===id)[1]).join(', '):'geen bijzondere signalen')+'. Vink aan wat in de uren meetelt'+(R.riskPct?' · nu +'+R.riskPct+'%':'')+'.')
+  ));
+  const grid=el('div',{class:'checks-grid'});
+  for(const[id,name,pc] of RISKS){
+    const suggested=a.suggest.includes(id);
+    grid.append(el('label',{},el('input',{type:'checkbox',checked:!!cur.risks[id],'aria-label':name,onchange:e=>{cur.risks[id]=e.target.checked;scheduleSave();renderAll()}}),name+' (+'+pc+'%)'+(suggested?' · past bij dit project':'')));
+  }
+  box.append(grid);
+}
+function renderStaff(R){
+  const box=$('#staff');if(!box)return;box.textContent='';ensureStaff(cur);
+  for(const[role,name,def,lo,hi] of ROLES){
+    const on=cur.roleOn[role]!==false;
+    const people=cur.staff.filter(s=>s.role===role);
+    const head=el('div',{class:'rolehead'},
+      el('label',{class:'switch',title:on?'Rol niet nodig':'Rol nodig'},el('input',{type:'checkbox',checked:on,'aria-label':name+' nodig',onchange:e=>{cur.roleOn[role]=e.target.checked;scheduleSave();renderAll()}}),el('span')),
+      el('strong',{},name),
+      el('span',{class:'hint'},on?nf0.format(R.role[role]||0)+' u':'niet nodig'),
+      el('span',{class:'hint','data-role-hours':role},'')
+    );
+    const wrap=el('div',{class:'rolebox'+(on?'':' off')},head);
+    for(const s of people){
+      const lvl=el('select',{'aria-label':'Niveau '+name,onchange:e=>{s.niveau=e.target.value;scheduleSave();renderAll()}},...Object.entries(LEVEL_NAME).map(([k,v])=>el('option',{value:k},v)));
+      lvl.value=s.niveau||'medior';
+      wrap.append(el('div',{class:'person'},
+        el('input',{type:'checkbox',checked:!!s.on,disabled:!on,'aria-label':'Medewerker '+name,onchange:e=>{s.on=e.target.checked;scheduleSave();renderAll()}}),
+        el('input',{type:'text',value:s.naam||'',placeholder:'naam',disabled:!on,'aria-label':'Naam '+name,onchange:e=>{s.naam=e.target.value;scheduleSave();renderAll()}}),
+        lvl,
+        el('span',{class:'hint'},nf0.format((R.scen.markt.person||{})[s.id]||0)+' u'),
+        people.length>1?el('button',{class:'btn',type:'button',onclick:()=>{cur.staff=cur.staff.filter(x=>x.id!==s.id);scheduleSave();renderAll()}},'Weg'):null
+      ));
+    }
+    wrap.append(el('button',{class:'btn',type:'button',style:'margin-top:6px',onclick:()=>{
+      if(cur.staff.filter(s=>s.role===role).length>=6){toast('Hooguit zes mensen per rol');return}
+      cur.staff.push({id:uid(),role,on:true,naam:'',niveau:'medior'});scheduleSave();renderAll();
+    }},'Medewerker toevoegen'));
+    box.append(wrap);
+  }
+}
+function renderExportSel(){
+  const box=$('#exportSel');if(!box)return;box.textContent='';ensureStaff(cur);
+  for(const[id,label] of EXPORT_PARTS){
+    box.append(el('label',{},el('input',{type:'checkbox',checked:cur.exportSel[id]!==false,'aria-label':'Export '+label,onchange:e=>{cur.exportSel[id]=e.target.checked;scheduleSave()}}),label));
+  }
 }
 function renderRates(R){
   const t=$('#tRates');t.textContent='';
@@ -304,13 +457,14 @@ function renderRates(R){
   for(const[k,l] of SCEN)f.append(field(l,inp('fac_'+k,cur.factors[k],v=>{cur.factors[k]=+v||0;scheduleSave();recalc()},'number',{step:.01,min:0})));
 }
 let lastR=null;
-function recalc(){if(!cur)return;const R=compute(cur);lastR=R;renderDerived(R);renderPhases(R);renderScen(R);renderPeople(R);
-  const tr=$('#tRates');if(tr)[...tr.querySelectorAll('tbody tr')].forEach((tr,i)=>{const c=tr.lastChild;if(c)c.textContent=nf0.format(R.role[ROLES[i][0]]||0)})}
+function recalc(){if(!cur)return;const R=compute(cur);lastR=R;renderDerived(R);renderAnalysis(R);renderPhases(R);renderScen(R);renderPeople(R);
+  const tr=$('#tRates');if(tr)[...tr.querySelectorAll('tbody tr')].forEach((row,i)=>{const c=row.lastChild;if(c&&ROLES[i])c.textContent=nf0.format(R.role[ROLES[i][0]]||0)})}
 function renderAll(){
   const app=$('#app');
   if(!cur){app.hidden=true;return}
+  ensureStaff(cur);
   app.hidden=false;$('#title').textContent=cur.naam||'Urencalculator';
-  renderProject();const R=compute(cur);lastR=R;renderRates(R);renderDerived(R);renderPhases(R);renderScen(R);renderPeople(R);renderSelect();
+  renderProject();const R=compute(cur);lastR=R;renderStaff(R);renderRates(R);renderExportSel();renderDerived(R);renderAnalysis(R);renderPhases(R);renderScen(R);renderPeople(R);renderSelect();
 }
 
 /* ---------- acties ---------- */
@@ -326,32 +480,36 @@ $('#bDel').addEventListener('click',async()=>{
   cur=projects[0]||null;if(!cur){cur=newProject('wijk','Nieuw project');projects.push(cur)}renderAll();toast('Project verwijderd');
 });
 
-async function exportXlsx(){
-  if(!window.XLSX||!cur){toast('Excel-export is niet beschikbaar');return}
-  const R=compute(cur),p=cur,ch=p.chosen;
-  const sum=[['Voorcalculatie werkduur – Civinaar'],[],['Project',p.naam],['Opdrachtgever',p.opdrachtgever],['Projectnummer',p.nummer],['Opgesteld door',p.opsteller],['Datum',p.datum],
-    ['Type',TYPES[p.type]],['Schaal',p.schaal],['Complexiteit',p.cplx],['Niveau tekenaar',p.niveau],['Aangeboden scenario',SCEN.find(s=>s[0]===ch)[1]],[],
-    ['Scenario','Factor','Uren','Bedrag (€ excl. btw)','Kans op overschrijding']];
-  for(const[k,l] of SCEN){const s=R.scen[k];sum.push([l,s.f,s.hours,Math.round(s.cost),Math.round(s.risk*100)+'%'])}
-  sum.push([],['Exacte uren',+R.audit.exact.toFixed(1)],['Begrote uren (markt)',R.audit.hours],['Optelling sluit',R.audit.ok?'ja':'nee']);
-  sum.push([],['Uren per medewerker','Medewerker','Tarief',...SCEN.map(s=>s[1]+' (uur)'),'Werkelijk']);
-  for(const[k,n] of ROLES){if(!SCEN.some(([s])=>(R.scen[s].role[k]||0)>0))continue;sum.push([n,p.people[k]||'',+p.rates[k],...SCEN.map(([s])=>R.scen[s].role[k]||0),+p.actual[k]||''])}
-  sum.push([],['Omvang'],...PARAMS.map(([k,l,u])=>[l,+p.params[k]||0,u]),['A1-bladen situatie',R.d.bladen],['Profielbladen',R.d.pbladen]);
-  const tasks=[['Fase','Taak','Eenheid','Aantal','Correctie %',...ROLES.map(r=>r[1]),'Uren (markt)',...SCEN.map(s=>s[1]+' (uur)')]];
-  for(const r of R.rows){if(!r.active)continue;
-    tasks.push([PHASES.find(x=>x[0]===r.ph)[1],r.name,r.unit==='pct'?'% ontwerpuren':UNITS[r.unit][0],r.unit==='pct'?+p.params.kwPct:+(+r.qty).toFixed(2),+r.st.corr||0,
-      ...ROLES.map(([k])=>r.byRole[k]||''),r.h,...SCEN.map(([s])=>r.scen[s]||0)])}
-  const wb=XLSX.utils.book_new();
-  const ws1=XLSX.utils.aoa_to_sheet(sum);ws1['!cols']=[{wch:34},{wch:18},{wch:12},{wch:14},{wch:14},{wch:14},{wch:14},{wch:12}];
-  const ws2=XLSX.utils.aoa_to_sheet(tasks);ws2['!cols']=[{wch:28},{wch:48},{wch:16},{wch:9},{wch:11},...ROLES.map(()=>({wch:12})),{wch:12},{wch:12},{wch:12},{wch:12},{wch:12}];
-  XLSX.utils.book_append_sheet(wb,ws1,'Samenvatting');XLSX.utils.book_append_sheet(wb,ws2,'Taken');
-  const out=XLSX.write(wb,{bookType:'xlsx',type:'array'});
-  const blob=new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download='Urencalculatie '+((p.nummer?p.nummer+' ':'')+p.naam).replace(/[\\/:*?"<>|]/g,'-')+'.xlsx';
-  document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Excel gedownload')
+function applyImported(data){
+  if(!data||(data.v!==1&&data.v!==2)||!data.params||!data.tasks){toast('Import mislukt: bestand hoort niet bij deze calculator');return}
+  const type=TYPES[data.type]?data.type:'wijk';
+  const p=newProject(type,data.naam||'Geïmporteerd project');
+  p.opdrachtgever=data.opdrachtgever||'';p.nummer=data.nummer||'';p.opsteller=data.opsteller||'';
+  p.datum=data.datum||p.datum;p.geldig=data.geldig??30;p.schaal=SCALES[data.schaal]?data.schaal:p.schaal;
+  p.cplx=CPLX[data.cplx]?data.cplx:p.cplx;p.niveau=LEVEL[data.niveau]?data.niveau:p.niveau;
+  p.chosen=SCEN.some(s=>s[0]===data.chosen)?data.chosen:'markt';
+  for(const[k] of PARAMS)if(data.params[k]!=null)p.params[k]=data.params[k];
+  for(const[k] of PHASES)if(data.phases&&k in data.phases)p.phases[k]=!!data.phases[k];
+  for(const t of TASKS){const src=data.tasks[t[0]];if(src)p.tasks[t[0]]={on:!!src.on,qty:src.qty==null||src.qty===''?null:+src.qty,corr:+src.corr||0}}
+  for(const[k] of ROLES){if(data.rates&&data.rates[k]!=null)p.rates[k]=+data.rates[k]||0;if(data.people&&data.people[k])p.people[k]=data.people[k]}
+  if(data.actual)for(const[k,v] of Object.entries(data.actual))p.actual[k]=+v||0;
+  if(data.factors)for(const[k] of SCEN)if(data.factors[k]!=null)p.factors[k]=+data.factors[k]||0;
+  if(Array.isArray(data.staff)&&data.staff.length)p.staff=data.staff;
+  if(data.roleOn)p.roleOn=data.roleOn;
+  if(data.risks)p.risks=data.risks;
+  if(data.exportSel)p.exportSel=data.exportSel;
+  if(data.cplxAuto!=null)p.cplxAuto=!!data.cplxAuto;
+  else p.cplxAuto=p.cplx!=='eenvoudig'&&p.cplx!=='complex';
+  ensureStaff(p);
+  projects.push(p);cur=p;renderAll();saveNow();toast('Project geïmporteerd');
 }
-$('#bXls').addEventListener('click',exportXlsx);
+$('#bXls').addEventListener('click',()=>exportExcel().catch(()=>toast('Excel-export mislukt')));
+$('#bDoc').addEventListener('click',()=>exportWord().catch(()=>toast('Word-export mislukt')));
+$('#bPdf').addEventListener('click',()=>exportPdf().catch(()=>toast('PDF-export mislukt')));
+$('#bXlsIn').addEventListener('click',()=>{$('#inXls').value='';$('#inXls').click()});
+$('#bDocIn').addEventListener('click',()=>{$('#inDoc').value='';$('#inDoc').click()});
+$('#inXls').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(f)importExcel(f).catch(()=>toast('Excel-import mislukt'))});
+$('#inDoc').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(f)importWord(f).catch(()=>toast('Word-import mislukt'))});
 
 function fmtDateISO(iso){
   const [y,m,d]=String(iso||'').split('-');
@@ -367,31 +525,62 @@ function geldigTot(p){
 function closeOfferte(){const m=$('#modal');if(!m)return;m.hidden=true;m.classList.remove('print')}
 function openOfferte(){
   if(!cur)return;
-  const R=lastR||compute(cur),p=cur,s=R.scen[p.chosen]||R.scen.markt,label=SCEN.find(x=>x[0]===p.chosen)||SCEN[2];
+  const v=offerView();if(!v)return;
+  const R=v.R,p=v.p,s=v.s,on=id=>partOn(p,id);
   const box=$('#offerte');box.textContent='';
-  const tb=el('tbody');
-  for(const[id,name] of PHASES){const h=s.phase[id]||0;if(!h)continue;tb.append(el('tr',{},el('td',{},name),el('td',{class:'n'},nf0.format(h)+' u')))}
-  tb.append(el('tr',{class:'tot'},el('td',{},'Totaal'),el('td',{class:'n'},nf0.format(s.hours)+' u')));
-  const people=el('tbody');
-  for(const[k,name] of ROLES){const h=s.role[k]||0;if(!h)continue;people.append(el('tr',{},el('td',{},name+(p.people[k]?' · '+p.people[k]:'')),el('td',{class:'n'},nf0.format(h)),el('td',{class:'n'},eur(h*(+p.rates[k]||0)))))}
-  people.append(el('tr',{class:'tot'},el('td',{},'Totaal excl. btw'),el('td',{class:'n'},nf0.format(s.hours)+' u'),el('td',{class:'n'},eur(s.cost))));
   const btw=Math.round(s.cost*.21);
-  box.append(
-    el('div',{class:'actions noprint'},el('button',{class:'btn',type:'button',onclick:closeOfferte},'Sluiten'),el('button',{class:'btn primary',type:'button',onclick:()=>{$('#modal').classList.add('print');window.print();$('#modal').classList.remove('print')}},'Afdrukken')),
-    el('div',{class:'offhead'},
-      el('div',{},el('div',{class:'eyebrow'},'Civinaar'),el('h2',{id:'offTitle'},'Offerte werkduur'),el('p',{class:'muted'},'Voorcalculatie van ingenieursuren, exclusief btw.')),
-      el('div',{},el('div',{class:'big'},eur(s.cost)),el('div',{class:'muted'},nf0.format(s.hours)+' uur · '+label[1]))),
-    el('p',{},el('strong',{},p.naam||'Project')),
-    el('p',{class:'muted'},[p.opdrachtgever&&('Opdrachtgever: '+p.opdrachtgever),p.nummer&&('Nummer: '+p.nummer),p.opsteller&&('Opgesteld door: '+p.opsteller),'Datum: '+fmtDateISO(p.datum),'Geldig tot: '+geldigTot(p)].filter(Boolean).join(' · ')),
-    el('h3',{style:'margin-top:14px'},'Uren per fase'),
-    el('table',{},el('thead',{},el('tr',{},el('th',{},'Fase'),el('th',{class:'n'},'Uren'))),tb),
-    el('h3',{style:'margin-top:16px'},'Uren en bedrag per rol'),
-    el('table',{},el('thead',{},el('tr',{},el('th',{},'Rol'),el('th',{class:'n'},'Uren'),el('th',{class:'n'},'Bedrag'))),people),
-    el('p',{class:'muted',style:'margin-top:8px'},'Btw 21% '+eur(btw)+' · inclusief btw '+eur(s.cost+btw)+'.'),
-    el('h3',{style:'margin-top:16px'},'Uitgangspunten'),
-    el('p',{class:'muted'},[TYPES[p.type],'schaal '+p.schaal,'complexiteit '+p.cplx,'tekenaar '+p.niveau,nf1.format(R.d.bladen)+' A1-bladen',R.d.pbladen+' profielbladen','exact '+nf1.format(R.audit.exact)+' uur'].join(' · ')),
-    el('p',{class:'muted'},R.audit.ok?'Taken, fasen en rollen sluiten op '+nf0.format(s.hours)+' uur.':'De optelling sluit niet. Controleer de berekening.')
-  );
+  const bits=[el('div',{class:'actions noprint'},el('button',{class:'btn',type:'button',onclick:closeOfferte},'Sluiten'),el('button',{class:'btn primary',type:'button',onclick:()=>{$('#modal').classList.add('print');window.print();$('#modal').classList.remove('print')}},'Afdrukken'))];
+  const headLeft=el('div',{});
+  if(on('logo'))headLeft.append(el('img',{class:'logo',src:LOGO_SRC,alt:'Civinaar'}));
+  headLeft.append(el('h2',{id:'offTitle'},'Offerte werkduur'),el('p',{class:'muted'},'Voorcalculatie van ingenieursuren. Uitgevinkte taken en rollen staan hier niet in.'));
+  const headRight=el('div',{});
+  if(on('bedragen'))headRight.append(el('div',{class:'big'},eur(s.cost)));
+  headRight.append(el('div',{class:'muted'},nf0.format(s.hours)+' uur · '+v.meta[1]));
+  bits.push(el('div',{class:'offhead'},headLeft,headRight));
+  if(on('project')){
+    bits.push(el('p',{},el('strong',{},p.naam||'Project')));
+    bits.push(el('p',{class:'muted'},[p.opdrachtgever&&('Opdrachtgever: '+p.opdrachtgever),p.nummer&&('Nummer: '+p.nummer),p.opsteller&&('Opgesteld door: '+p.opsteller),'Datum: '+fmtDateISO(p.datum),'Geldig tot: '+geldigTot(p)].filter(Boolean).join(' · ')));
+  }
+  if(on('markt'))bits.push(el('p',{class:'muted'},v.status.basisOk?'Rekenbasis marktconform: ja, '+nf0.format(v.status.marktHours)+' uur, '+eur(v.status.marktCost)+'.':('Rekenbasis marktconform: nee. '+v.status.issues.join(' '))));
+  if(on('fasen')){
+    const tb=el('tbody');
+    for(const ph of v.phases)tb.append(el('tr',{},el('td',{},ph.name),el('td',{class:'n'},nf0.format(ph.hours)+' u')));
+    tb.append(el('tr',{class:'tot'},el('td',{},'Totaal'),el('td',{class:'n'},nf0.format(s.hours)+' u')));
+    bits.push(el('h3',{style:'margin-top:14px'},'Uren per fase'),el('table',{},el('thead',{},el('tr',{},el('th',{},'Fase'),el('th',{class:'n'},'Uren'))),tb));
+  }
+  if(on('rollen')){
+    const people=el('tbody');
+    for(const role of v.roles){
+      const cells=[el('td',{},role.name),el('td',{class:'n'},nf0.format(role.hours))];
+      if(on('bedragen'))cells.push(el('td',{class:'n'},eur(role.cost)));
+      people.append(el('tr',{},...cells));
+    }
+    const tot=[el('td',{},on('bedragen')&&on('btw')?'Totaal excl. btw':'Totaal'),el('td',{class:'n'},nf0.format(s.hours)+' u')];
+    if(on('bedragen'))tot.push(el('td',{class:'n'},eur(s.cost)));
+    people.append(el('tr',{class:'tot'},...tot));
+    const heads=[el('th',{},'Medewerker'),el('th',{class:'n'},'Uren')];
+    if(on('bedragen'))heads.push(el('th',{class:'n'},'Bedrag'));
+    bits.push(el('h3',{style:'margin-top:16px'},'Uren per medewerker'),el('table',{},el('thead',{},el('tr',{},...heads)),people));
+  }
+  if(on('btw'))bits.push(el('p',{class:'muted',style:'margin-top:8px'},'Btw 21% '+eur(btw)+' · inclusief btw '+eur(s.cost+btw)+'.'));
+  if(on('uitgang'))bits.push(el('h3',{style:'margin-top:16px'},'Uitgangspunten'),el('p',{class:'muted'},[TYPES[p.type],'schaal '+p.schaal,nf1.format(R.d.bladen)+' A1-bladen',R.d.pbladen+' profielbladen','exact '+nf1.format(R.audit.exact)+' uur'].join(' · ')));
+  if(on('complex')){
+    const a=R.analyse,picked=RISKS.filter(r=>p.risks&&p.risks[r[0]]);
+    bits.push(el('h3',{style:'margin-top:16px'},'Complexiteit en risico’s'),el('p',{class:'muted'},'Complexiteit '+(p.cplxAuto?'volgt de analyse en is ':'is zelf gekozen als ')+R.cplx+'. '+(a.reasons||[]).join(', ')+'.'),el('p',{class:'muted'},picked.length?'Risico’s in de uren: '+picked.map(r=>r[1]+' (+'+r[2]+'%)').join(', ')+'.':'Geen extra risico’s aangevinkt.'));
+  }
+  if(on('taken')){
+    const tb=el('tbody');
+    for(const t of v.tasks){
+      const cells=[el('td',{},t.phase),el('td',{},t.name),el('td',{},t.qty),el('td',{class:'n'},nf0.format(t.hours))];
+      if(on('bedragen'))cells.push(el('td',{class:'n'},eur(t.cost)));
+      tb.append(el('tr',{},...cells));
+    }
+    const heads=[el('th',{},'Fase'),el('th',{},'Taak'),el('th',{},'Aantal'),el('th',{class:'n'},'Uren')];
+    if(on('bedragen'))heads.push(el('th',{class:'n'},'Bedrag'));
+    bits.push(el('h3',{style:'margin-top:16px'},'Taken'),el('table',{},el('thead',{},el('tr',{},...heads)),tb));
+  }
+  bits.push(el('p',{class:'muted'},R.audit.ok?'Taken, fasen en medewerkers sluiten op '+nf0.format(s.hours)+' uur.':'De optelling sluit niet. Controleer de berekening.'));
+  box.append(...bits);
   $('#modal').hidden=false;
 }
 $('#bOff').addEventListener('click',openOfferte);
@@ -402,11 +591,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeOfferte()});
 function startLocal(msg){
   projects=lsLoad();
   if(!projects.length){const p=newProject('wijk','Voorbeeld – Woonrijp fase 1.1 Stougjeswijk');p.opdrachtgever='GEM Stougjeswijk (voorbeeld)';projects=[p];lsSave()}
+  for(const p of projects)ensureStaff(p);
   cur=projects[0];if(msg){const b=$('#banner');b.textContent=msg;b.hidden=false}renderAll();setState('Opslag in deze browser');
 }
 // Standalone: projecten in localStorage. Vervang door een eigen backend (bijv. Supabase/Firebase) voor delen met collega's.
 (function boot(){
   startLocal();
-  $('#bXls').hidden=false;
-  $('#bOff').hidden=false;
 })();
