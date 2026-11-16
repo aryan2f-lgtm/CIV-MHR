@@ -1,0 +1,10 @@
+{
+  "url": "https://aryan2f-lgtm.github.io/CIV-MHR/civ-rf-web/",
+  "installPage": "https://aryan2f-lgtm.github.io/CIV-MHR/civ-rf-web/install.html",
+  "ip": "192.168.2.4",
+  "protocol": "https",
+  "tunnel": true,
+  "offlineApp": true,
+  "fixedQr": true,
+  "updatedAt": "2026-08-10T20:35:29.568Z"
+}

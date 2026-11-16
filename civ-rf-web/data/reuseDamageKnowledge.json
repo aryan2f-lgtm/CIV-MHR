@@ -1,0 +1,401 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-07T14:27:52.275Z",
+  "publisher": "Civinaar CIV-RF",
+  "note": "Hergebruik- en schadekennis voor RF-beoordeling. Officiële kaders (CROW/RWS/RCE) vs praktijk/onderzoek. Geen vervanging van CB'23 of volledige CROW-publicatietekst.",
+  "sources": [
+    {
+      "id": "nen-2767",
+      "name": "NEN 2767 — Conditiemeting (methodiek)",
+      "url": "https://www.nen.nl/bouw/beheer-en-onderhoud/conditiemeting",
+      "sourceClass": "official-framework",
+      "topics": [
+        "conditiemeting",
+        "intensiteit",
+        "omvang",
+        "ernst"
+      ]
+    },
+    {
+      "id": "stowa-nen-2767",
+      "name": "STOWA Handreiking NEN 2767",
+      "url": "https://www.stowa.nl/sites/default/files/assets/PUBLICATIES/Publicaties%202021/STOWA%202021-22%20NEN%202767.pdf",
+      "sourceClass": "official-framework",
+      "topics": [
+        "NEN 2767",
+        "ernst",
+        "intensiteit",
+        "omvang"
+      ]
+    },
+    {
+      "id": "nta-8713",
+      "name": "NTA 8713:2023 — Hergebruik constructiestaal",
+      "url": "https://www.nen.nl/nta-8713-2023-nl-307691",
+      "sourceClass": "official-framework",
+      "topics": [
+        "staal",
+        "hergebruik",
+        "uitsluitingen"
+      ]
+    },
+    {
+      "id": "nta-8713-handleiding",
+      "name": "Bouwakkoord Staal — Handleiding NTA 8713",
+      "url": "https://bouwakkoordstaal.nl/handleiding-nta-87132023-hergebruik-van-constructiestaal",
+      "sourceClass": "practice",
+      "topics": [
+        "staal",
+        "NTA 8713",
+        "keuring"
+      ]
+    },
+    {
+      "id": "crow-verhardingen",
+      "name": "CROW Verhardingen",
+      "url": "https://www.crow.nl/Onderwerpen/verhardingen/",
+      "sourceClass": "official-framework",
+      "topics": [
+        "asfalt",
+        "elementen",
+        "fundering",
+        "metingen"
+      ]
+    },
+    {
+      "id": "crow-asfalt",
+      "name": "CROW Asfalt",
+      "url": "https://www.crow.nl/Onderwerpen/verhardingen/asfalt/",
+      "sourceClass": "official-framework",
+      "topics": [
+        "asfalt",
+        "OIA",
+        "WMA",
+        "levensduur"
+      ]
+    },
+    {
+      "id": "crow-elementen",
+      "name": "CROW Elementverhardingen",
+      "url": "https://www.crow.nl/Onderwerpen/verhardingen/elementen/",
+      "sourceClass": "official-framework",
+      "topics": [
+        "beton",
+        "baksteen",
+        "band",
+        "voegen"
+      ]
+    },
+    {
+      "id": "crow-cur",
+      "name": "CROW-CUR",
+      "url": "https://www.crow.nl/Onderwerpen/civiele-constructies/crow-cur/",
+      "sourceClass": "official-framework",
+      "topics": [
+        "beton",
+        "inspectie",
+        "hout",
+        "circulair"
+      ]
+    },
+    {
+      "id": "rce-beton-inspectie",
+      "name": "RCE Beton-inspectie",
+      "url": "https://kennis.cultureelerfgoed.nl/index.php/Beton_-_inspectie",
+      "sourceClass": "official-framework",
+      "topics": [
+        "beton",
+        "carbonatie",
+        "chloride",
+        "wapening"
+      ]
+    },
+    {
+      "id": "rws-vorstschade",
+      "name": "RWS Vorstschade",
+      "url": "https://www.rijkswaterstaat.nl/wegen/wegbeheer/winter-op-de-weg/vorstschade",
+      "sourceClass": "official-framework",
+      "topics": [
+        "asfalt",
+        "vorst",
+        "raveling",
+        "scheuren"
+      ]
+    },
+    {
+      "id": "rws-materialen",
+      "name": "RWS Techniek Academie — Materialen",
+      "url": "https://techniekacademie.rijkswaterstaat.nl/kennisvelden/wegenbouw/specialist-schaal-12-wegenbouw/materialen/",
+      "sourceClass": "official-framework",
+      "topics": [
+        "asfalt",
+        "fundering",
+        "schadekenmerken",
+        "VGW"
+      ]
+    },
+    {
+      "id": "materiaalbank",
+      "name": "Materiaalbank.nl",
+      "url": "https://materiaalbank.nl/",
+      "sourceClass": "practice",
+      "topics": [
+        "hergebruik",
+        "marktplaats"
+      ]
+    },
+    {
+      "id": "duspot",
+      "name": "DuSpot",
+      "url": "https://www.duspot.nl/",
+      "sourceClass": "practice",
+      "topics": [
+        "hergebruik",
+        "matching",
+        "infra"
+      ]
+    },
+    {
+      "id": "gebruiktebouwmaterialen",
+      "name": "Gebruiktebouwmaterialen.com",
+      "url": "https://gebruiktebouwmaterialen.com/",
+      "sourceClass": "practice",
+      "topics": [
+        "hergebruik",
+        "bouwmaterialen"
+      ]
+    },
+    {
+      "id": "bouwcirculair-paspoort",
+      "name": "BouwCirculair — Materialenpaspoort",
+      "url": "https://bouwcirculair.nl/nieuws/16-materialenpaspoort/",
+      "sourceClass": "practice",
+      "topics": [
+        "materialenpaspoort",
+        "GWW",
+        "registratie"
+      ]
+    },
+    {
+      "id": "zenodo-pavdistress",
+      "name": "Pavdistress (Zenodo) — asfaltschadebeelden",
+      "url": "https://zenodo.org/records/18208073",
+      "sourceClass": "research",
+      "topics": [
+        "asfalt",
+        "scheuren",
+        "gaten",
+        "AI"
+      ]
+    },
+    {
+      "id": "zenodo-hu-cracks",
+      "name": "HU Infrastructure Cracks (Zenodo)",
+      "url": "https://zenodo.org/records/21570780",
+      "sourceClass": "research",
+      "topics": [
+        "beton",
+        "scheuren",
+        "AI"
+      ]
+    },
+    {
+      "id": "nature-wood-defects",
+      "name": "Nature Scientific Data — coated wood surface defects",
+      "url": "https://www.nature.com/articles/s41597-025-06443-1",
+      "sourceClass": "research",
+      "topics": [
+        "hout",
+        "krassen",
+        "scheuren",
+        "gaten"
+      ],
+      "note": "Industriële gecoate houtproducten (meubel), geen GWW-hardhoutnorm — alleen visuele defectklassen."
+    }
+  ],
+  "skipped": [
+    {
+      "url": "https://www.insert.nl/wp-content/uploads/2020/09/marktplaats.svg",
+      "reason": "Alleen SVG-icoon, geen inhoudelijke kennis."
+    },
+    {
+      "url": "https://www.bimobject.com/nl",
+      "reason": "Generieke BIM-objectbibliotheek; geen GWW-schade/hergebruikkader."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10630617/",
+      "reason": "Niet betrouwbaar opgehaald (bot-blokkade); niet opgenomen zonder tekstcontrole."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "rd-nta-8713-staal",
+      "familyIds": [
+        "staal"
+      ],
+      "title": "NTA 8713 — hergebruik constructiestaal",
+      "sourceClass": "official-framework",
+      "bullets": [
+        "NTA 8713:2023: procedure voor eigenschappen/geometrie van hergebruikt constructiestaal (openbare handleiding Bouwakkoord Staal).",
+        "Uitsluitingen o.a.: dynamisch belaste constructies (brug/mast), giet-/smeedijzer, plastische vervorming, typisch pre-1955 — hard afkeur hoogwaardig hergebruik (RF4).",
+        "Corrosie: ISO 8501-graad + NEN 2767-achtig intensiteit×omvang; lasbaarheid apart als er gelast wordt.",
+        "Constructieve eisen blijven NEN-EN 1993; NTA is hulpmiddel, geen Bouwbesluit-koppeling."
+      ],
+      "citations": [
+        "nta-8713",
+        "nta-8713-handleiding",
+        "nen-2767"
+      ]
+    },
+    {
+      "id": "rd-nen-2767-methodiek",
+      "familyIds": [
+        "asfalt",
+        "beton",
+        "baksteen",
+        "band",
+        "hout",
+        "staal",
+        "kunststof",
+        "natuursteen",
+        "overig"
+      ],
+      "title": "NEN 2767-achtige schadeclassificatie",
+      "sourceClass": "official-framework",
+      "bullets": [
+        "Openbaar NEN 2767-kader (STOWA): gebrek × ernst + intensiteit (begin/gevorderd/eind) + omvang (% van bouwdeel).",
+        "CIV-RF gebruikt dit als inspectiehulp naast CB'23 — geen officiële NEN 2767-certificering.",
+        "Vul per familie schadecodes (zie nenDamageTaxonomy.json) en koppel aan intensiteit/omvang-vragen.",
+        "Ernst is normatief gekoppeld aan gebrektype; inspecteur bepaalt intensiteit en omvang in het veld."
+      ],
+      "citations": [
+        "nen-2767",
+        "stowa-nen-2767"
+      ]
+    },
+    {
+      "id": "rd-asfalt-schade",
+      "familyIds": [
+        "asfalt"
+      ],
+      "title": "Asfaltschade — herkenning voor RF",
+      "sourceClass": "official-framework",
+      "bullets": [
+        "Vorstschade (RWS): bindmiddel wordt brosser → scheurtjes → bevriezend water → losse steentjes (raveling), gaten, open naden; vooral oud wegdek, vorst-dooi cycli.",
+        "Schadekenmerken herkennen én herstelmaatregel kennen (RWS Techniek Academie / VGW-context).",
+        "Pavdistress-onderzoekstypen (praktijk/research): edge cracks, longitudinal/transverse cracks, potholes — nuttig als visuele taxonomie, geen Nederlandse norm.",
+        "Warme hergebruikintentie blijft: teer/PAK (CROW 210) eerst; vorstschade/raveling verlaagt hoogwaardig hergebruikpotentieel.",
+        "CROW OIA: beoordeling bestaande asfaltverhardingen (o.a. deflectiemetingen) — constructief; RF-klasse is apart (hergebruikklasse)."
+      ],
+      "citations": [
+        "crow-asfalt",
+        "rws-vorstschade",
+        "rws-materialen",
+        "zenodo-pavdistress"
+      ]
+    },
+    {
+      "id": "rd-elementen-schade",
+      "familyIds": [
+        "beton",
+        "baksteen",
+        "band"
+      ],
+      "title": "Elementverharding — schade & uitvoering",
+      "sourceClass": "official-framework",
+      "bullets": [
+        "Elementen = tegels/stenen/klinkers (beton, gebakken, natuursteen) — juiste maatvoering/verband voorkomt onregelmatige voegen (CROW).",
+        "RF-inspectie: breuk, afgeschoven hoeken, slijtage, vervuiling, voegen/verband verstoring, vorstschade.",
+        "Referentieproefvakken en ontwerp-uitvoering afstemming verhogen kwaliteit — niet verwarren met RF-klasse.",
+        "CROW-CUR Aanbeveling 132: circulaire bijproducten in niet-constructief ongewapend beton (tegels/stenen) — productinnovatie, geen vrijbrief voor RF1 zonder inspectie."
+      ],
+      "citations": [
+        "crow-elementen",
+        "crow-cur"
+      ]
+    },
+    {
+      "id": "rd-beton-inspectie",
+      "familyIds": [
+        "beton"
+      ],
+      "title": "Betoninspectie — schadeoorzaak & omvang",
+      "sourceClass": "official-framework",
+      "bullets": [
+        "Altijd starten met visuele inspectie; diagnose = oorzaak + omvang zichtbaar én niet-zichtbaar (RCE).",
+        "Bekloppen: delaminatie, holten, grindnesten, losse schollen.",
+        "Carbonatie: fenolftaleïne op vers breukvlak — niet-gecarbonateerd kleurt paars; gecarbonateerd kleurloos.",
+        "Dekking/wapening: dekkingsmeter; corrosieactiviteit: potentiaalmetingen.",
+        "Bij wapeningscorrosie: minstens carbonatatiediepte + dekking; bij zouten ook chloriden.",
+        "Lab/petrografie: sterkte, porositeit, chloride/sulfaat, ASR/ettringiet indien chemische aantasting.",
+        "CUR-Aanbeveling 72 (inspectie/onderzoek betonconstructies) als kader voor onderzoeksopdracht.",
+        "HU cracks-dataset (research): transverse/longitudinal/diagonal/hairline + severity — taxonomie-hulp, geen Nederlandse beheerklasse."
+      ],
+      "citations": [
+        "rce-beton-inspectie",
+        "crow-cur",
+        "zenodo-hu-cracks"
+      ]
+    },
+    {
+      "id": "rd-hout-schade",
+      "familyIds": [
+        "hout"
+      ],
+      "title": "Houtschade — visuele defectklassen",
+      "sourceClass": "practice",
+      "bullets": [
+        "GWW-hout: rot, vocht, schimmel, insect, scheuren, vervorming, bevestigingscorrosie (bestaande CIV-RF checklist).",
+        "Research-dataset coated wood (Nature): scratches, cracks, bubbles, holes — alleen als visuele analogie; géén GWW-hardhoutnorm.",
+        "Soort + duurzaamheidsklasse (leverancier/NEN 5493) + staat bepalen hergebruik; FSC/PEFC ≠ RF-klasse."
+      ],
+      "citations": [
+        "nature-wood-defects",
+        "crow-cur"
+      ]
+    },
+    {
+      "id": "rd-fundering",
+      "familyIds": [
+        "asfalt",
+        "overig",
+        "beton"
+      ],
+      "title": "Ondergrond & fundering",
+      "sourceClass": "official-framework",
+      "bullets": [
+        "CROW: ondergrond en wegfunderingen beoordelen voor stabiele constructie — apart van deklaag-RF.",
+        "RWS: funderingstypen (granulaat, agrac, hoogovenslakken e.a.) en technische uitsluitingen kennen.",
+        "Fundering ≠ RAP/asfaltgranulaat-claim van de deklaag — apart bemonsteren/documenteren."
+      ],
+      "citations": [
+        "crow-verhardingen",
+        "rws-materialen"
+      ]
+    },
+    {
+      "id": "rd-circulair-keten",
+      "familyIds": [
+        "overig",
+        "beton",
+        "staal",
+        "hout",
+        "asfalt"
+      ],
+      "title": "Circulaire afzet & materialenpaspoort",
+      "sourceClass": "practice",
+      "bullets": [
+        "Marktplaatsen (Materiaalbank, DuSpot, Gebruiktebouwmaterialen): afzetkanaal na RF-beoordeling — geen bewijs voor RF-klasse.",
+        "DuSpot: matching vraag/aanbod circulair materiaal in infra/bouw/groen.",
+        "Materialenpaspoort (BouwCirculair GWW): registreer wat je hebt vóór interventie — wat wel/niet vastleggen, archiveren, hergebruiken later.",
+        "CIV-RF-rapport kan als input dienen voor paspoort/matching, niet omgekeerd als vervanging van inspectie."
+      ],
+      "citations": [
+        "materiaalbank",
+        "duspot",
+        "gebruiktebouwmaterialen",
+        "bouwcirculair-paspoort"
+      ]
+    }
+  ]
+}

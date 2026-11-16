@@ -1,0 +1,1299 @@
+{
+  "version": 11,
+  "updatedAt": "2026-08-07T14:27:52.275Z",
+  "publisher": "Civinaar CIV-RF",
+  "entries": [
+    {
+      "id": "pack-reuse-damage-overview",
+      "at": "2026-08-07T14:27:52.275Z",
+      "topicId": "rf-hergebruik",
+      "title": "Hergebruik & schade — bronnenoverzicht CIV-RF",
+      "familyIds": [
+        "asfalt",
+        "beton",
+        "baksteen",
+        "band",
+        "hout",
+        "staal",
+        "overig"
+      ],
+      "summary": "Gebundelde schade- en hergebruikkennis uit CROW (verhardingen/asfalt/elementen/CUR), RWS (vorstschade, materialen), RCE betoninspectie, circulaire marktplaatsen en open schade-datasets. Officieel kader eerst; marktplaats/paspoort = afzet/registratie na RF.",
+      "lessons": [
+        "RF-klasse = inspectiebewijs; CROW/RWS/RCE geven schade- en onderzoekskaders, geen automatische RF1.",
+        "Asfalt: vorst/raveling/scheuren/gaten documenteren; teer/PAK blijft hard gate voor warme hergebruik.",
+        "Beton: visueel + bekloppen; carbonatie/dekking/chloride bij wapeningscorrosie; CUR 72 als onderzoeksopdracht-kader.",
+        "Elementen: voegen/verband/breuk/slijtage; circulaire productaanbevelingen ≠ RF-bewijs.",
+        "Circulaire platforms (DuSpot/Materiaalbank/GBM) en materialenpaspoort: na beoordeling gebruiken voor afzet/registratie.",
+        "Open image-datasets (Pavdistress, HU cracks, Nature wood defects): taxonomie/AI-hulp, geen Nederlandse beheer-/RF-norm.",
+        "Databestand: public/data/reuseDamageKnowledge.json"
+      ],
+      "citations": [
+        {
+          "name": "NEN 2767 — Conditiemeting (methodiek)",
+          "url": "https://www.nen.nl/bouw/beheer-en-onderhoud/conditiemeting",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "STOWA Handreiking NEN 2767",
+          "url": "https://www.stowa.nl/sites/default/files/assets/PUBLICATIES/Publicaties%202021/STOWA%202021-22%20NEN%202767.pdf",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "NTA 8713:2023 — Hergebruik constructiestaal",
+          "url": "https://www.nen.nl/nta-8713-2023-nl-307691",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Bouwakkoord Staal — Handleiding NTA 8713",
+          "url": "https://bouwakkoordstaal.nl/handleiding-nta-87132023-hergebruik-van-constructiestaal",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "CROW Verhardingen",
+          "url": "https://www.crow.nl/Onderwerpen/verhardingen/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW Asfalt",
+          "url": "https://www.crow.nl/Onderwerpen/verhardingen/asfalt/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW Elementverhardingen",
+          "url": "https://www.crow.nl/Onderwerpen/verhardingen/elementen/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW-CUR",
+          "url": "https://www.crow.nl/Onderwerpen/civiele-constructies/crow-cur/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "RCE Beton-inspectie",
+          "url": "https://kennis.cultureelerfgoed.nl/index.php/Beton_-_inspectie",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "RWS Vorstschade",
+          "url": "https://www.rijkswaterstaat.nl/wegen/wegbeheer/winter-op-de-weg/vorstschade",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "RWS Techniek Academie — Materialen",
+          "url": "https://techniekacademie.rijkswaterstaat.nl/kennisvelden/wegenbouw/specialist-schaal-12-wegenbouw/materialen/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Materiaalbank.nl",
+          "url": "https://materiaalbank.nl/",
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "official-framework",
+      "confidence": "hoog",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-rd-nta-8713-staal",
+      "at": "2026-08-07T14:27:52.275Z",
+      "topicId": "rf-hergebruik",
+      "title": "NTA 8713 — hergebruik constructiestaal",
+      "familyIds": [
+        "staal"
+      ],
+      "summary": "NTA 8713:2023: procedure voor eigenschappen/geometrie van hergebruikt constructiestaal (openbare handleiding Bouwakkoord Staal). Zie ook: public/data/reuseDamageKnowledge.json.",
+      "lessons": [
+        "NTA 8713:2023: procedure voor eigenschappen/geometrie van hergebruikt constructiestaal (openbare handleiding Bouwakkoord Staal).",
+        "Uitsluitingen o.a.: dynamisch belaste constructies (brug/mast), giet-/smeedijzer, plastische vervorming, typisch pre-1955 — hard afkeur hoogwaardig hergebruik (RF4).",
+        "Corrosie: ISO 8501-graad + NEN 2767-achtig intensiteit×omvang; lasbaarheid apart als er gelast wordt.",
+        "Constructieve eisen blijven NEN-EN 1993; NTA is hulpmiddel, geen Bouwbesluit-koppeling."
+      ],
+      "citations": [
+        {
+          "name": "NTA 8713:2023 — Hergebruik constructiestaal",
+          "url": "https://www.nen.nl/nta-8713-2023-nl-307691",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Bouwakkoord Staal — Handleiding NTA 8713",
+          "url": "https://bouwakkoordstaal.nl/handleiding-nta-87132023-hergebruik-van-constructiestaal",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "NEN 2767 — Conditiemeting (methodiek)",
+          "url": "https://www.nen.nl/bouw/beheer-en-onderhoud/conditiemeting",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "official-framework",
+      "confidence": "hoog",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-rd-nen-2767-methodiek",
+      "at": "2026-08-07T14:27:52.275Z",
+      "topicId": "asfalt-pcr",
+      "title": "NEN 2767-achtige schadeclassificatie",
+      "familyIds": [
+        "asfalt",
+        "beton",
+        "baksteen",
+        "band",
+        "hout",
+        "staal",
+        "kunststof",
+        "natuursteen",
+        "overig"
+      ],
+      "summary": "Openbaar NEN 2767-kader (STOWA): gebrek × ernst + intensiteit (begin/gevorderd/eind) + omvang (% van bouwdeel). Zie ook: public/data/reuseDamageKnowledge.json.",
+      "lessons": [
+        "Openbaar NEN 2767-kader (STOWA): gebrek × ernst + intensiteit (begin/gevorderd/eind) + omvang (% van bouwdeel).",
+        "CIV-RF gebruikt dit als inspectiehulp naast CB'23 — geen officiële NEN 2767-certificering.",
+        "Vul per familie schadecodes (zie nenDamageTaxonomy.json) en koppel aan intensiteit/omvang-vragen.",
+        "Ernst is normatief gekoppeld aan gebrektype; inspecteur bepaalt intensiteit en omvang in het veld."
+      ],
+      "citations": [
+        {
+          "name": "NEN 2767 — Conditiemeting (methodiek)",
+          "url": "https://www.nen.nl/bouw/beheer-en-onderhoud/conditiemeting",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "STOWA Handreiking NEN 2767",
+          "url": "https://www.stowa.nl/sites/default/files/assets/PUBLICATIES/Publicaties%202021/STOWA%202021-22%20NEN%202767.pdf",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "official-framework",
+      "confidence": "hoog",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-rd-asfalt-schade",
+      "at": "2026-08-07T14:27:52.275Z",
+      "topicId": "asfalt-pcr",
+      "title": "Asfaltschade — herkenning voor RF",
+      "familyIds": [
+        "asfalt"
+      ],
+      "summary": "Vorstschade (RWS): bindmiddel wordt brosser → scheurtjes → bevriezend water → losse steentjes (raveling), gaten, open naden; vooral oud wegdek, vorst-dooi cycli. Zie ook: public/data/reuseDamageKnowledge.json.",
+      "lessons": [
+        "Vorstschade (RWS): bindmiddel wordt brosser → scheurtjes → bevriezend water → losse steentjes (raveling), gaten, open naden; vooral oud wegdek, vorst-dooi cycli.",
+        "Schadekenmerken herkennen én herstelmaatregel kennen (RWS Techniek Academie / VGW-context).",
+        "Pavdistress-onderzoekstypen (praktijk/research): edge cracks, longitudinal/transverse cracks, potholes — nuttig als visuele taxonomie, geen Nederlandse norm.",
+        "Warme hergebruikintentie blijft: teer/PAK (CROW 210) eerst; vorstschade/raveling verlaagt hoogwaardig hergebruikpotentieel.",
+        "CROW OIA: beoordeling bestaande asfaltverhardingen (o.a. deflectiemetingen) — constructief; RF-klasse is apart (hergebruikklasse)."
+      ],
+      "citations": [
+        {
+          "name": "CROW Asfalt",
+          "url": "https://www.crow.nl/Onderwerpen/verhardingen/asfalt/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "RWS Vorstschade",
+          "url": "https://www.rijkswaterstaat.nl/wegen/wegbeheer/winter-op-de-weg/vorstschade",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "RWS Techniek Academie — Materialen",
+          "url": "https://techniekacademie.rijkswaterstaat.nl/kennisvelden/wegenbouw/specialist-schaal-12-wegenbouw/materialen/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Pavdistress (Zenodo) — asfaltschadebeelden",
+          "url": "https://zenodo.org/records/18208073",
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "official-framework",
+      "confidence": "hoog",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-rd-elementen-schade",
+      "at": "2026-08-07T14:27:52.275Z",
+      "topicId": "rf-hergebruik",
+      "title": "Elementverharding — schade & uitvoering",
+      "familyIds": [
+        "beton",
+        "baksteen",
+        "band"
+      ],
+      "summary": "Elementen = tegels/stenen/klinkers (beton, gebakken, natuursteen) — juiste maatvoering/verband voorkomt onregelmatige voegen (CROW). Zie ook: public/data/reuseDamageKnowledge.json.",
+      "lessons": [
+        "Elementen = tegels/stenen/klinkers (beton, gebakken, natuursteen) — juiste maatvoering/verband voorkomt onregelmatige voegen (CROW).",
+        "RF-inspectie: breuk, afgeschoven hoeken, slijtage, vervuiling, voegen/verband verstoring, vorstschade.",
+        "Referentieproefvakken en ontwerp-uitvoering afstemming verhogen kwaliteit — niet verwarren met RF-klasse.",
+        "CROW-CUR Aanbeveling 132: circulaire bijproducten in niet-constructief ongewapend beton (tegels/stenen) — productinnovatie, geen vrijbrief voor RF1 zonder inspectie."
+      ],
+      "citations": [
+        {
+          "name": "CROW Elementverhardingen",
+          "url": "https://www.crow.nl/Onderwerpen/verhardingen/elementen/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW-CUR",
+          "url": "https://www.crow.nl/Onderwerpen/civiele-constructies/crow-cur/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "official-framework",
+      "confidence": "hoog",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-rd-beton-inspectie",
+      "at": "2026-08-07T14:27:52.275Z",
+      "topicId": "rf-hergebruik",
+      "title": "Betoninspectie — schadeoorzaak & omvang",
+      "familyIds": [
+        "beton"
+      ],
+      "summary": "Altijd starten met visuele inspectie; diagnose = oorzaak + omvang zichtbaar én niet-zichtbaar (RCE). Zie ook: public/data/reuseDamageKnowledge.json.",
+      "lessons": [
+        "Altijd starten met visuele inspectie; diagnose = oorzaak + omvang zichtbaar én niet-zichtbaar (RCE).",
+        "Bekloppen: delaminatie, holten, grindnesten, losse schollen.",
+        "Carbonatie: fenolftaleïne op vers breukvlak — niet-gecarbonateerd kleurt paars; gecarbonateerd kleurloos.",
+        "Dekking/wapening: dekkingsmeter; corrosieactiviteit: potentiaalmetingen.",
+        "Bij wapeningscorrosie: minstens carbonatatiediepte + dekking; bij zouten ook chloriden.",
+        "Lab/petrografie: sterkte, porositeit, chloride/sulfaat, ASR/ettringiet indien chemische aantasting.",
+        "CUR-Aanbeveling 72 (inspectie/onderzoek betonconstructies) als kader voor onderzoeksopdracht.",
+        "HU cracks-dataset (research): transverse/longitudinal/diagonal/hairline + severity — taxonomie-hulp, geen Nederlandse beheerklasse."
+      ],
+      "citations": [
+        {
+          "name": "RCE Beton-inspectie",
+          "url": "https://kennis.cultureelerfgoed.nl/index.php/Beton_-_inspectie",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW-CUR",
+          "url": "https://www.crow.nl/Onderwerpen/civiele-constructies/crow-cur/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "HU Infrastructure Cracks (Zenodo)",
+          "url": "https://zenodo.org/records/21570780",
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "official-framework",
+      "confidence": "hoog",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-rd-hout-schade",
+      "at": "2026-08-07T14:27:52.275Z",
+      "topicId": "rf-hergebruik",
+      "title": "Houtschade — visuele defectklassen",
+      "familyIds": [
+        "hout"
+      ],
+      "summary": "GWW-hout: rot, vocht, schimmel, insect, scheuren, vervorming, bevestigingscorrosie (bestaande CIV-RF checklist). Zie ook: public/data/reuseDamageKnowledge.json.",
+      "lessons": [
+        "GWW-hout: rot, vocht, schimmel, insect, scheuren, vervorming, bevestigingscorrosie (bestaande CIV-RF checklist).",
+        "Research-dataset coated wood (Nature): scratches, cracks, bubbles, holes — alleen als visuele analogie; géén GWW-hardhoutnorm.",
+        "Soort + duurzaamheidsklasse (leverancier/NEN 5493) + staat bepalen hergebruik; FSC/PEFC ≠ RF-klasse."
+      ],
+      "citations": [
+        {
+          "name": "Nature Scientific Data — coated wood surface defects",
+          "url": "https://www.nature.com/articles/s41597-025-06443-1",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "CROW-CUR",
+          "url": "https://www.crow.nl/Onderwerpen/civiele-constructies/crow-cur/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "practice",
+      "confidence": "matig",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-rd-fundering",
+      "at": "2026-08-07T14:27:52.275Z",
+      "topicId": "asfalt-pcr",
+      "title": "Ondergrond & fundering",
+      "familyIds": [
+        "asfalt",
+        "overig",
+        "beton"
+      ],
+      "summary": "CROW: ondergrond en wegfunderingen beoordelen voor stabiele constructie — apart van deklaag-RF. Zie ook: public/data/reuseDamageKnowledge.json.",
+      "lessons": [
+        "CROW: ondergrond en wegfunderingen beoordelen voor stabiele constructie — apart van deklaag-RF.",
+        "RWS: funderingstypen (granulaat, agrac, hoogovenslakken e.a.) en technische uitsluitingen kennen.",
+        "Fundering ≠ RAP/asfaltgranulaat-claim van de deklaag — apart bemonsteren/documenteren."
+      ],
+      "citations": [
+        {
+          "name": "CROW Verhardingen",
+          "url": "https://www.crow.nl/Onderwerpen/verhardingen/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "RWS Techniek Academie — Materialen",
+          "url": "https://techniekacademie.rijkswaterstaat.nl/kennisvelden/wegenbouw/specialist-schaal-12-wegenbouw/materialen/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "official-framework",
+      "confidence": "hoog",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-rd-circulair-keten",
+      "at": "2026-08-07T14:27:52.275Z",
+      "topicId": "asfalt-pcr",
+      "title": "Circulaire afzet & materialenpaspoort",
+      "familyIds": [
+        "overig",
+        "beton",
+        "staal",
+        "hout",
+        "asfalt"
+      ],
+      "summary": "Marktplaatsen (Materiaalbank, DuSpot, Gebruiktebouwmaterialen): afzetkanaal na RF-beoordeling — geen bewijs voor RF-klasse. Zie ook: public/data/reuseDamageKnowledge.json.",
+      "lessons": [
+        "Marktplaatsen (Materiaalbank, DuSpot, Gebruiktebouwmaterialen): afzetkanaal na RF-beoordeling — geen bewijs voor RF-klasse.",
+        "DuSpot: matching vraag/aanbod circulair materiaal in infra/bouw/groen.",
+        "Materialenpaspoort (BouwCirculair GWW): registreer wat je hebt vóór interventie — wat wel/niet vastleggen, archiveren, hergebruiken later.",
+        "CIV-RF-rapport kan als input dienen voor paspoort/matching, niet omgekeerd als vervanging van inspectie."
+      ],
+      "citations": [
+        {
+          "name": "Materiaalbank.nl",
+          "url": "https://materiaalbank.nl/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "DuSpot",
+          "url": "https://www.duspot.nl/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Gebruiktebouwmaterialen.com",
+          "url": "https://gebruiktebouwmaterialen.com/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "BouwCirculair — Materialenpaspoort",
+          "url": "https://bouwcirculair.nl/nieuws/16-materialenpaspoort/",
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "practice",
+      "confidence": "matig",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-rws-leidraad-bouwstoffen-2000",
+      "at": "2026-08-07T14:10:07.788Z",
+      "topicId": "rf-hergebruik",
+      "title": "RWS Leidraad Bouwstoffen (2000) — bouwstoffenkaarten",
+      "familyIds": [
+        "asfalt",
+        "beton",
+        "hout",
+        "staal",
+        "overig"
+      ],
+      "summary": "Rijkswaterstaat Leidraad Bouwstoffen (maart 2000): praktische info over bouwstoffen voor wegenbouw en natte waterbouw, incl. 34 bouwstoffenkaarten (asfalt, granulaten, damwanden, fundering). Historisch (Bouwstoffenbesluit) — gebruik als materiaalkennis, niet als actuele wet. Geëxtraheerd naar rwsLeidraadEnDetails.json.",
+      "lessons": [
+        "Bouwstoffenkaarten: definitie, herkomst, eigenschappen, constructie/uitvoering, milieu/beleid, praktijkvoorbeelden.",
+        "Secundaire materialen (betongranulaat, menggranulaat, asfaltgranulaat, slakken) expliciet behandeld — relevant voor fundering/RF-context.",
+        "Asfaltkaart: onderscheid mengseltypen (DAB/ZOAB/SMA e.a.); PAK/categorie historisch — altijd toetsen aan huidige CROW 210 / regelgeving.",
+        "Damwand hout/staal/beton apart beschreven — soort + staat bepalen hergebruik.",
+        "Keuzemodel bouwstoffen: criteria-afweging voor ontwerp/bestek — niet gelijk aan RF1–RF4.",
+        "Datering 2000: beleid/milieucategorieën kunnen verouderd zijn; civieltechnische materiaalkennis blijft bruikbaar als RWS-praktijkbron."
+      ],
+      "citations": [
+        {
+          "name": "Leidraad Bouwstoffen Rijkswaterstaat (DWW, 2000)",
+          "url": null,
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "official-framework",
+      "confidence": "matig",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-wegenbouwdetails-praktijk",
+      "at": "2026-08-07T14:10:07.788Z",
+      "topicId": "rf-hergebruik",
+      "title": "Standaard Wegenbouwdetails — typische maatvoering GWW",
+      "familyIds": [
+        "beton",
+        "baksteen",
+        "band",
+        "asfalt",
+        "overig"
+      ],
+      "summary": "Gemeentelijke standaarddetails (PME): rijwegen in bestrating, materiaalovergangen asfalt↔steen, fietspaden, langsparkeren, inritten, trappen, straatmeubilair. Praktijkmaatvoering voor herkenning/context in CIV-RF — geen RF-norm en geen MKI-formule.",
+      "lessons": [
+        "Trottoirband vaak 180/200×250 mm op stelspecie (min 0,03 / max 0,08 m).",
+        "Betonstraatsteen (b.s.s.) / straatbaksteen (s.b.s.) met zand + steenmengsel fundering.",
+        "Materiaalovergang asfalt ↔ b.s.s./s.b.s.: strekse lagen, funderingsaansluiting documenteren.",
+        "Fietspad asfalt: onderlaag/deklaag, steenmengsel/zand; nabij bomen: geen fijne fractie in puinfundering + geotextiel.",
+        "Uitstaptegels 200×200×80 bij langsparkeren met groen achter parkeerplaats.",
+        "Gebruik details om te verwachten welke materialen in een situatie horen (band/tegel/asfalt/fundering).",
+        "RF-klasse blijft inspectie van het vrijkomende materiaal; detailtekening ≠ bewijs van staat."
+      ],
+      "citations": [
+        {
+          "name": "Standaard Wegenbouwdetails (Stadsontwikkeling PME)",
+          "url": null,
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "practice",
+      "confidence": "matig",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-family-suppliers-hout-staal-beton",
+      "at": "2026-08-07T13:42:25.936Z",
+      "topicId": "rf-hergebruik",
+      "title": "Leveranciersreferentie hout / staal / beton (GWW)",
+      "familyIds": [
+        "hout",
+        "staal",
+        "beton",
+        "band"
+      ],
+      "summary": "Product- en soortkennis uit GWW-hout (GWW Houtimport, Van den Berg, Angelim vermelho), staal (Steel Constructions, Gegolfdstaal/Viacon) en beton/bestrating (Romein, Bosch Beton, De Hamer, Magnus, Morssinkhof, Giverbo). Praktijk/leverancier — geen CB'23-norm. RF blijft inspectiebewijs.",
+      "lessons": [
+        "Hout: noteer soort + duurzaamheidsklasse (bv. Angelim vermelho D50 / klasse I) + FSC/PEFC indien bekend; RF op rot/scheuren/insect/vocht.",
+        "Angelim vermelho ≈ azobé/okan-toepassingen (damwand, brug, beschoeiing) — soort bevestigen, niet alleen kleur.",
+        "Staal: geleiderail/palen/leuningen (verzinkt) vs gegolfd staal (duikers/bruggen/tunnels) — corrosie en deformatie zwaar wegen.",
+        "De Hamer = prefab beton (riolering/bestrating), geen staalproducent.",
+        "Bosch L-keerwanden: hogesterkte ZVB; hergebruik als element of als granulaat apart beoordelen.",
+        "Morssinkhof: KOMO/DoP en whitepapers betonpuin-hergebruik — certificaten ≠ RF-klasse.",
+        "Giverbo blijft primaire bestrating/banden-referentie naast De Hamer/Morssinkhof."
+      ],
+      "citations": [
+        {
+          "name": "GWW Houtimport",
+          "url": "https://www.gwwhoutimport.nl/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Angelim vermelho",
+          "url": "https://www.gwwhoutimport.nl/angelim-vermelho.html",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Angelim vermelho PDF",
+          "url": "https://www.gwwhoutimport.nl/downloads/Angelim_vermelho.pdf",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Van den Berg Hardhout — houtsoorten",
+          "url": "https://www.vandenberghardhout.com/nl/houtsoorten/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Steel Constructions staalproducten",
+          "url": "https://www.steelconstructions.nl/staalproducten/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Gegolfdstaal.nl",
+          "url": "https://www.gegolfdstaal.nl/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "De Hamer Beton",
+          "url": "https://www.dehamer.nl/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Romein Beton",
+          "url": "https://www.romein.nl/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Bosch Beton keerwanden",
+          "url": "https://www.boschbeton.nl/keerwandoplossingen-op-maat/producten/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Morssinkhof Infra downloads",
+          "url": "https://morssinkhof-infra.nl/downloads",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Magnus Prefab Beton",
+          "url": "https://magnusbeton.nl/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Giverbo producten",
+          "url": "https://www.giverbo.nl/producten",
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "practice",
+      "confidence": "matig",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-asfalt-warm-hergebruik",
+      "at": "2026-08-07T13:33:40.801Z",
+      "topicId": "asfalt-pcr",
+      "title": "Asfalt warme hergebruik (WMA / RAP in centrale)",
+      "familyIds": [
+        "asfalt",
+        "overig"
+      ],
+      "summary": "Vrijkomend asfalt bedoeld voor warme hergebruik: herproductie in asfaltcentrale als Warm Mix (of hot-to-warm), vaak met RAP/asfaltgranulaat. Teer/PAK (CROW 210) blijft hard gate. Koude in-situ recycling apart houden. Leverancierspraktijk (BESIX, AsfaltNu, Heijmans LEAB, KWS, TWW, ESHA) — geen vervanging van CROW/PCR.",
+      "lessons": [
+        "Warme hergebruik = oud asfalt → centrale → nieuw warm/WMA-mengsel (eventueel met verjonger), niet koud in-situ recyclen.",
+        "Eerst CROW 210 teer/PAK: teerhoudend = uitsluiten hoogwaardig hergebruik (RF1–RF2).",
+        "Documenteer laagtype: deklaag / tussenlaag / onderlaag — ander hergebruikpotentieel.",
+        "Fundering onder asfalt apart beoordelen (menggranulaat/puin); niet mengen met RAP-claim van de deklaag.",
+        "Hoog RAP-% of “80% recycling” is leverancierscapaciteit — projectspecificatie + lab bepalen de claim.",
+        "WMA/laag-temperatuur (~105°C i.p.v. ~160–170°C) ondersteunt duurzame productie; RF-klasse blijft inspectiebewijs.",
+        "Cold Asphalt Recycling / koud herstelproduct ≠ warme hergebruikroute — apart labelen in rapport.",
+        "ESHA-achtige LVO: eerst levensduur/schade bepalen; bij vernieuwen pas vrijkomend asfalt naar warme keten sturen."
+      ],
+      "citations": [
+        {
+          "name": "CROW 210 — Omgaan met vrijkomend asfalt",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "TWW — Onze asfaltmengsels (Hot→Warm)",
+          "url": "https://www.tww.nl/onze-asfaltmengsels",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "AsfaltNu Bergen op Zoom",
+          "url": "https://www.asfaltnu.nl/over-ons/onze-asfaltcentrales/asfaltnu-bergen-op-zoom",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Heijmans asfalt (LEAB e.a.)",
+          "url": "https://www.heijmans.nl/nl/verbinden/wat-we-doen/wegen/asfalt/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "BESIX Infra NL asfaltmengsels",
+          "url": "https://www.besixinfranederland.nl/nl/over-ons/asfaltcentrale/asfaltmengsels",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "KWS asfalt",
+          "url": "https://www.kws.nl/nl/wegenbouw/asfalt",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "ESHA oplossingen / areaal",
+          "url": "https://www.esha.nl/oplossingen/product-index",
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "practice",
+      "confidence": "matig",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-supplier-catalog-gww",
+      "at": "2026-08-07T13:24:05.437Z",
+      "topicId": "rf-hergebruik",
+      "title": "Leveranciersreferentie GWW: foto/omschrijving (4 bronnen)",
+      "familyIds": [
+        "beton",
+        "band",
+        "baksteen",
+        "overig"
+      ],
+      "summary": "Standaard productfoto's en korte omschrijvingen uit Giverbo, Struyk Verwo, Infra-Solutions en Bestrating.nl (GWW) voor herkenning in CIV-RF. Praktijk/leverancier — geen CB'23-norm.",
+      "lessons": [
+        "Gebruik leveranciersfoto als referentiebeeld bij materiaalkuze (banden/tegels/stenen/parkbanden/platen).",
+        "Omschrijvingen zijn productgroep- of SKU-niveau; RF-klasse blijft afhankelijk van inspectiebewijs.",
+        "Bronvermelding: Giverbo, Struyk Verwo Infra, Infra-Solutions, Bestrating.nl — geen Civinaar-eigendom.",
+        "Catalogusbestand: public/data/supplierProductCatalog.json (+ product-photos/)."
+      ],
+      "citations": [
+        {
+          "name": "Giverbo producten",
+          "url": "https://www.giverbo.nl/producten",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Struyk Verwo Infra Productselector",
+          "url": "https://struykverwoinfra.nl/productselector.html",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Infra-Solutions Parkbanden",
+          "url": "https://infra-solutions.nl/producten/parkbanden/",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Bestrating.nl Betonstraatsteen (GWW)",
+          "url": "https://bestrating.nl/gww/betonstraatsteen",
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "practice",
+      "confidence": "matig",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-assortimentswijzer-2021",
+      "at": "2026-08-07T08:02:29.327Z",
+      "topicId": "rf-hergebruik",
+      "title": "Assortimentswijzer 2021 — betonbestrating productfamilies (praktijk)",
+      "familyIds": [
+        "beton",
+        "band",
+        "baksteen",
+        "overig"
+      ],
+      "summary": "Struyk Verwo Infra Assortimentswijzer 2021 (476 p.): leverancierscatalogus banden/tegels/stenen/verkeerselementen/meubilair/vloerplaten/keerelementen. Gebruik voor productherkenning en juiste inspectietemplate. GEEN CB'23/CROW/NMD-norm; geen RF-klasse afleiden uit catalogus alleen.",
+      "lessons": [
+        "Productgroepen: BANDEN | TEGELS | STENEN | VERKEERSELEMENTEN | STRAATMEUBILAIR | VLOERPLATEN | KEERELEMENTEN — kies RF-template op productgroep, niet op merknaam.",
+        "Banden: opsluit-, gazon-, geveltuin-, trottoir- (o.a. 13/15, 17/20, 18/20, RWS 11/22, 19/22, 34/45, 23/25…), rijwielpad-, geleide-, scheidings-, bushalte-, stoot-, signalerings-, waterregulerende banden.",
+        "Tegels: trottoirtegels, sport/spel, tekst/cijfer/symbool, geleidelijn/markering, EV-kabelgoot, verkeersveiligheid, sparing, grasbeton, boom/ventilatie, HWA-tegels.",
+        "Stenen: betonstraatstenen, groenbestrating, waterregulerend, onkruidvrij, geluidsreducerend, verband-/parkstenen — visueel anders dan band/tegel.",
+        "Verkeerselementen (drempels, plateaus, kussens, rotonde, middengeleider, busperron) ≠ standaard band/tegel; apart beoordelen.",
+        "Keerelementen en vloerplaten zijn constructief/industrieel — niet als trottoirtegel scoren.",
+        "CirCOton (≥15% gerecycled, MKI-claim) en CERO (geopolymeer) zijn productlijnen/MKI-context → CIV-MHR; geven géén RF1–RF4.",
+        "Cycle for Concrete = retour/hergebruik betonpuin (circulariteit); RF-klasse blijft afhankelijk van inspectiebewijs (schade, vervuiling, restlevensduur).",
+        "KOMO/CE/NL-BSB/Besluit Bodemkwaliteit zeggen iets over nieuw product; hergebruik-RF vereist veldinspectie + foto/checklist.",
+        "Leveranciersmaten (RWS 11/22 e.d.) helpen identificatie; lokale catalogus ≠ landelijke hergebruikregel.",
+        "Bronbestand (lokaal): data2/Om te leren/Assortimentswijzer-2021.pdf (476 pagina's). Alleen praktijk/aanname."
+      ],
+      "citations": [
+        {
+          "name": "Assortimentswijzer 2021 — Struyk Verwo Infra (leverancier, praktijk)",
+          "url": "https://www.struykverwoinfra.nl",
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Platform CB'23 (officieel kader — catalogus vervangt dit niet)",
+          "url": "https://platformcb23.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "practice",
+      "confidence": "matig",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-geen-rf-zonder-bewijs",
+      "at": "2026-08-06T15:46:06.352Z",
+      "topicId": "rf-hergebruik",
+      "title": "Geen RF zonder inspectiebewijs",
+      "familyIds": [
+        "overig",
+        "beton",
+        "baksteen",
+        "asfalt",
+        "band",
+        "hout",
+        "staal"
+      ],
+      "summary": "Landelijke regel in CIV-RF: zonder checklistantwoorden of geldige materiaalfoto + kernvragen is er geen RF-klasse en geen RF-waarde. Lege beoordeling ≠ RF4.",
+      "lessons": [
+        "Geen antwoorden + geen foto → niet beoordeeld (geen RF).",
+        "Onbeantwoorde vragen tellen niet als score 0.",
+        "Asfalt: teer/PAK (CROW 210) verplicht vóór RF.",
+        "Straatbaksteen: defectpercentage verplicht vóór RF.",
+        "AI mag geen midpoint-defaults verzinnen om RF te forceren.",
+        "Gemeentelijke praktijkvoorbeelden trainen patronen, vervangen geen CROW/CB'23/NMD."
+      ],
+      "citations": [
+        {
+          "name": "Platform CB'23",
+          "url": "https://platformcb23.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW 210",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "NMD",
+          "url": "https://milieudatabase.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "official-framework",
+      "confidence": "hoog",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-data2-practice-index",
+      "at": "2026-08-06T15:46:06.352Z",
+      "topicId": "rf-hergebruik",
+      "title": "data2 praktijkvoorbeelden (index)",
+      "familyIds": [
+        "asfalt",
+        "beton",
+        "baksteen",
+        "overig"
+      ],
+      "summary": "Index van 158 foto's en 31 documenten uit data2 als trainings-/praktijkmateriaal. MKI-bladen → CIV-MHR. Geëxcludeerd: 8 (stikstof/gunning e.d.).",
+      "lessons": [
+        "Gebruik nulmeting-foto's om visuele steekproef/schade/context te leren.",
+        "Asfalt-/funderingsrapporten: deklaag ≠ fundering; teer/PAK apart.",
+        "Generaliseer landelijk: patronen ja, straatnamen/gemeente-eisen nee.",
+        "Blad 07 / Leiden MKI / 830K023 densiteit → MHR qty/mp, niet RF-klasse.",
+        "Manifest: public/data/practiceExamplesManifest.json (202 bestanden)."
+      ],
+      "citations": [
+        {
+          "name": "data2 praktijkmap (lokaal, niet-normatief)",
+          "url": null,
+          "sourceClass": "practice"
+        },
+        {
+          "name": "Platform CB'23",
+          "url": "https://platformcb23.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "sourceClass": "practice",
+      "confidence": "matig",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-rf-cb23",
+      "at": "2026-08-05T22:27:24.388Z",
+      "topicId": "rf-hergebruik",
+      "title": "RF-klassen & CB'23 hergebruik",
+      "familyIds": [
+        "overig",
+        "beton",
+        "baksteen",
+        "asfalt"
+      ],
+      "summary": "Platform CB'23: RF1–RF4 als hergebruikkader. Visuele inspectie is indicatief; bij twijfel conservatiever. Geen vervanging van officiële certificaten.",
+      "lessons": [
+        "Eerst materiaal verifiëren, daarna RF-klasse.",
+        "Bij twijfel of slechte foto: geen RF1.",
+        "Documenteer schade, vervuiling en herkomst.",
+        "Lab/NDT overwegen bij hoogwaardig hergebruikclaim.",
+        "CB'23 en CROW als kader; lokale gemeentelijke eisen kunnen strenger zijn."
+      ],
+      "citations": [
+        {
+          "name": "Platform CB'23",
+          "url": "https://platformcb23.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "TU Delft",
+          "url": "https://www.tudelft.nl/",
+          "sourceClass": "secondary"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-asfalt",
+      "at": "2026-08-06T14:50:00.000Z",
+      "topicId": "asfalt-pcr",
+      "title": "Asfalt hergebruik — veldkenmerken + CROW 210",
+      "familyIds": [
+        "asfalt"
+      ],
+      "summary": "ZOAB/DAB/SMA verschillen in textuur. Eerst teer/PAK (CROW 210), daarna raveling/scheuren. Teerhoudend = hard uitsluiten voor hoogwaardig hergebruik.",
+      "lessons": [
+        "Open poreuze textuur → waarschijnlijk ZOAB.",
+        "CROW 210: eerst teerhoudendheid / PAK checken vóór RF-claim.",
+        "Raveling = lagere RF of afkeur voor hoogwaardig hergebruik.",
+        "Olie/grond vervuiling zwaar meewegen.",
+        "Geen asfalt-RF op beton- of baksteenfoto.",
+        "Spoorvorming en scheurpatroon documenteren.",
+        "Fundering (menggranulaat/puin) vaak apart herbruikbaar — documenteer uit boring."
+      ],
+      "citations": [
+        {
+          "name": "CROW 210 — Omgaan met vrijkomend asfalt",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Rijkswaterstaat",
+          "url": "https://www.rijkswaterstaat.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Asfaltblij",
+          "url": "https://www.asfaltblij.nl/",
+          "sourceClass": "secondary"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-crow210-teer",
+      "at": "2026-08-06T14:50:00.000Z",
+      "topicId": "asfalt-pcr",
+      "title": "CROW 210 — Teerhoudend asfalt & PAK",
+      "familyIds": [
+        "asfalt"
+      ],
+      "summary": "CROW-richtlijn: vrijkomend asfalt classificeren op teerhoudendheid. Lab PAK < 250 mg/kg ds = niet teerhoudend. Teerhoudend asfalt niet als hoogwaardig hergebruik (RF1–RF2) inzetten.",
+      "lessons": [
+        "PAK < 250 mg/kg droge stof → niet teerhoudend (route I-a/I-b).",
+        "PAK ≥ 250 of positieve teermarker → teerhoudend: RF4 / uitsluiten hoogwaardig hergebruik.",
+        "Bij onbekende herkomst of lagen vóór ~1995: lab of conservatief uitsluiten.",
+        "Deklaag en onderlagen apart bemonsteren bij verdachte lagen.",
+        "CIV-RF hard-exclude bij antwoord ‘teerhoudend/onbekend’ op teer/PAK-vraag."
+      ],
+      "citations": [
+        {
+          "name": "CROW 210 Richtlijn omgaan met vrijkomend asfalt",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Besluit bodemkwaliteit",
+          "url": "https://www.rijksoverheid.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-asfalt-fundering",
+      "at": "2026-08-06T15:30:00.000Z",
+      "topicId": "asfalt-pcr",
+      "title": "Fundering onder asfalt — hergebruik",
+      "familyIds": [
+        "asfalt",
+        "overig"
+      ],
+      "summary": "Uit asfalt-/funderingsonderzoeken (Den Haag: o.a. Maanweg, Veenendaalkade, Beresteinlaan, Waldorpstraat, Jupiterkade): betonpuin en menggranulaat onder asfalt zijn vaak herbruikbaar (indicatief klasse III) indien schoon en laagdikte bekend. [PRAKTIJK/AANNEME — geen landelijke wet; generaliseer landelijk via CROW/CB'23.]",
+      "lessons": [
+        "Fundering ≠ deklaag: apart beoordelen op teer/verontreiniging.",
+        "Schoon menggranulaat/betonpuin: vaak herbruikbaar als fundering.",
+        "Documenteer laagdikte en samenstelling uit boring/kern.",
+        "Verontreinigde of vermengde fundering → conservatief / nader onderzoek.",
+        "Geen RF1 claimen zonder veld-/labonderbouwing.",
+        "Tussenlagen (GOA) apart bemonsteren bij verdachte lagen."
+      ],
+      "citations": [
+        {
+          "name": "CROW 210",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Asfalt- en funderingsonderzoeken Den Haag (praktijkdata2) (praktijk/aanname — niet officieel landelijk)",
+          "url": null,
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "confidence": "matig",
+      "sourceClass": "practice",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-asfalt-mengselkaart",
+      "at": "2026-08-06T15:30:00.000Z",
+      "topicId": "asfalt-pcr",
+      "title": "Asfaltmengsel identificeren (AC Surf / SMA)",
+      "familyIds": [
+        "asfalt"
+      ],
+      "summary": "Mengselkaarten (bijv. AC 8 Surf 40/60, code 830K023) geven dichtheid (~2340 kg/m³), bitumen% en type. Nodig voor hergebruikclaim en CIV-MHR qty-conversie m²→ton. [PRAKTIJK/AANNEME — geen landelijke wet; generaliseer landelijk via CROW/CB'23.]",
+      "lessons": [
+        "Noteer mengselcode, bindmiddel (penbitumen vs blank) en streefdichtheid.",
+        "AC Surf / SMA / AC bin-base apart houden — ander hergebruikpotentieel.",
+        "Rood asfalt: pigment ≠ teer; teer/PAK blijft CROW 210-labcheck.",
+        "Zonder mengselinfo: conservatiever scoren op gradering/type."
+      ],
+      "citations": [
+        {
+          "name": "Asfaltmengselkaart 830K023 AC 8 Surf (Dura Vermeer) (praktijk/aanname — niet officieel landelijk)",
+          "url": null,
+          "sourceClass": "practice"
+        },
+        {
+          "name": "PCR Asfalt / NEN-EN 13108",
+          "url": "https://www.nen.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "confidence": "matig",
+      "sourceClass": "practice",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-visuele-nulmeting",
+      "at": "2026-08-06T15:30:00.000Z",
+      "topicId": "rf-hergebruik",
+      "title": "Visuele inspectie & nulmeting",
+      "familyIds": [
+        "asfalt",
+        "beton",
+        "baksteen",
+        "overig"
+      ],
+      "summary": "Nulmeting-foto’s en visuele inspectierapporten documenteren uitgangstoestand. Geschikt als bewijslast bij RF, niet als vervanging van lab (teer/PAK) of NEN 2767-conditiescore. [PRAKTIJK/AANNEME — geen landelijke wet; generaliseer landelijk via CROW/CB'23.]",
+      "lessons": [
+        "Foto’s: schaal/context + schade detail; geen RF1 op 1 onscherpe foto.",
+        "Nulmeting vóór sloop/herinrichting vastleggen (datum, locatie).",
+        "Visueel OK ≠ teervrij: bij asfalt lab of CROW 210-route volgen.",
+        "Brug/kunstwerk: combineer visueel met NEN 2767 / duikinspectie."
+      ],
+      "citations": [
+        {
+          "name": "NEN 2767",
+          "url": "https://www.nen.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW / CB'23 veldpraktijk",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "confidence": "matig",
+      "sourceClass": "practice",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-riool-kunststof",
+      "at": "2026-08-06T15:30:00.000Z",
+      "topicId": "kunststof-leiding",
+      "title": "Kunststof riolering (PP) — hergebruikindicatie",
+      "familyIds": [
+        "overig"
+      ],
+      "summary": "PP-riool (SN8 Ø160/300 e.d.) uit Blad 07 / HOR: hergebruik zelden als leidingstuk in situ; wel materiaalrecycling. Beoordeel beschadiging, ovalisatie, aansluitingen; RF1 voor herplaatsing alleen met onderbouwing. [PRAKTIJK/AANNEME — geen landelijke wet; generaliseer landelijk via CROW/CB'23.]",
+      "lessons": [
+        "Leiding herplaatsen ≠ recycling: strengere eisen (dichtheid, sterkte).",
+        "Scheuren, ovalisatie, wortelgroei → lage RF of afvoer.",
+        "Putten/kolken/deksels apart beoordelen van leiding.",
+        "MKI-referentie per m¹ straat ≠ RF-klasse van de leiding zelf."
+      ],
+      "citations": [
+        {
+          "name": "Blad 07 Riolering MKI (DuboCalc) (praktijk/aanname — niet officieel landelijk)",
+          "url": null,
+          "sourceClass": "practice"
+        },
+        {
+          "name": "CROW riolering / RAW",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "confidence": "matig",
+      "sourceClass": "practice",
+      "nationalScope": false
+    },
+    {
+      "id": "pack-nen2767",
+      "at": "2026-08-06T14:50:00.000Z",
+      "topicId": "conditiemeting",
+      "title": "NEN 2767 — Conditiemeting (indicatief)",
+      "familyIds": [
+        "staal",
+        "beton",
+        "overig"
+      ],
+      "summary": "NEN 2767: conditiescores op basis van omvang × intensiteit van gebreken. Score 1–2 = goed; 4–6 = conservatieve RF / lagere hergebruikclaim. CIV-RF gebruikt dit als kader, niet als volledige normcertificering.",
+      "lessons": [
+        "Beoordeel omvang én intensiteit — niet alleen ‘er is roest’.",
+        "Conditie 1–2: hoogwaardig hergebruik mogelijk bij overige eisen OK.",
+        "Conditie 4–6: geen RF1; vaak RF3/RF4 of nader onderzoek.",
+        "Brug/duikinspecties: structurele gebreken zwaar meewegen.",
+        "Volledige NEN-tekst niet in tool; officiële norm raadplegen bij conflict."
+      ],
+      "citations": [
+        {
+          "name": "NEN 2767 Conditiemeting",
+          "url": "https://www.nen.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-beton",
+      "at": "2026-08-05T22:27:24.388Z",
+      "topicId": "beton-nen",
+      "title": "Betonproducten — keuringspunten",
+      "familyIds": [
+        "beton"
+      ],
+      "summary": "Betonstraatstenen/tegels: vorstschade, afbrokkeling, scheuren. NEN-productinfo publiek raadplegen; volledige normtekst niet in CIV-RF.",
+      "lessons": [
+        "Grijs cementmatig oppervlak = beton, niet baksteen.",
+        "Vorst/randschade → conservatieve RF.",
+        "Maatvastheid en breukvlakken beoordelen.",
+        "Bij twijfel productnorm (NEN) officieel raadplegen.",
+        "Prefab vs straatsteen: juiste materiaalfamilie kiezen."
+      ],
+      "citations": [
+        {
+          "name": "NEN",
+          "url": "https://www.nen.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Betonvereniging",
+          "url": "https://www.betonvereniging.nl/",
+          "sourceClass": "secondary"
+        },
+        {
+          "name": "CROW",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-baksteen",
+      "at": "2026-08-05T22:27:24.388Z",
+      "topicId": "baksteen",
+      "title": "Straatbaksteen hergebruik",
+      "familyIds": [
+        "baksteen"
+      ],
+      "summary": "Straatbaksteen: rode/bruine gebakken steen. Vorst, breuk en vervuiling bepalen herbruikbaarheid. Onderscheid met betonsteen is kritiek.",
+      "lessons": [
+        "Rood/bruin gebakken ≠ grijs betonsteen.",
+        "Vorstschade aan hoeken zwaar meewegen.",
+        "Vervuiling in voegen documenteren.",
+        "Gemeentelijke handboeken kunnen eisen stellen aan hergebruik in straatwerk."
+      ],
+      "citations": [
+        {
+          "name": "CROW",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "NEN",
+          "url": "https://www.nen.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Gemeente Amsterdam (praktijk/aanname — niet officieel landelijk)",
+          "url": null,
+          "sourceClass": "practice"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-banden",
+      "at": "2026-08-05T22:27:24.388Z",
+      "topicId": "banden-nen1340",
+      "title": "Trottoirbanden",
+      "familyIds": [
+        "band"
+      ],
+      "summary": "Betonnen trottoir-/opsluitbanden: breuk, afgeschoven koppen, vervuiling. NEN 1340-achtige productcontext alleen publiek samenvatten.",
+      "lessons": [
+        "Langwerpige grijze band ≠ steen/tegel.",
+        "Breuk/kopschade → lagere RF.",
+        "Zware vervuiling of olie: conservatief.",
+        "Controleer of type (opsluit/trottoir/geleide) klopt met selectie."
+      ],
+      "citations": [
+        {
+          "name": "NEN",
+          "url": "https://www.nen.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "CROW",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-hout",
+      "at": "2026-08-05T22:27:24.388Z",
+      "topicId": "hout-gww",
+      "title": "Hout in GWW",
+      "familyIds": [
+        "hout"
+      ],
+      "summary": "Damwand/beschoeiing: rot, vocht, insecten. Hardhout vs naaldhout; bij structurele aantasting geen hoogwaardige RF.",
+      "lessons": [
+        "Vocht/rot = zwaar negatief.",
+        "Scheuren en vervorming documenteren.",
+        "Geen RF1 bij zichtbare structurele aantasting.",
+        "Gemeentelijke eisen kunnen strenger zijn."
+      ],
+      "citations": [
+        {
+          "name": "CROW",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "TU Delft",
+          "url": "https://www.tudelft.nl/",
+          "sourceClass": "secondary"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-staal",
+      "at": "2026-08-06T14:50:00.000Z",
+      "topicId": "staal-corrosie",
+      "title": "Staal & corrosie",
+      "familyIds": [
+        "staal"
+      ],
+      "summary": "Stalen damwand/constructies: corrosiegraad (NEN 2767-achtig: omvang×intensiteit), lassen, vervorming. Zware putcorrosie → afkeur of lage RF.",
+      "lessons": [
+        "Roestkleur alleen is niet genoeg — diepte/omvang telt (NEN 2767).",
+        "Lasnaden en gaten kritisch bekijken.",
+        "Bij structurele twijfel: geen hoogwaardige RF.",
+        "TNO/RWS-praktijk: conservatief bij onzekerheid."
+      ],
+      "citations": [
+        {
+          "name": "TNO",
+          "url": "https://www.tno.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "Rijkswaterstaat",
+          "url": "https://www.rijkswaterstaat.nl/",
+          "sourceClass": "official-framework"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    },
+    {
+      "id": "pack-raw",
+      "at": "2026-08-05T22:27:24.388Z",
+      "topicId": "raw-bestek",
+      "title": "RAW / CROW bestekpraktijk",
+      "familyIds": [
+        "overig",
+        "asfalt",
+        "beton"
+      ],
+      "summary": "RAW (CROW) koppelt eisen aan werken. Hergebruik vraagt specificatie en veldkeuring — CIV-RF documenteert, vervangt geen bestekstoets.",
+      "lessons": [
+        "Koppel beoordeling aan bestekseis waar bekend.",
+        "Herkomst en hoeveelheid vastleggen.",
+        "Afwijkingen expliciet noteren.",
+        "CROW/RAW als kader, niet als AI-certificaat."
+      ],
+      "citations": [
+        {
+          "name": "CROW",
+          "url": "https://www.crow.nl/",
+          "sourceClass": "official-framework"
+        },
+        {
+          "name": "TU Delft",
+          "url": "https://www.tudelft.nl/",
+          "sourceClass": "secondary"
+        }
+      ],
+      "source": "pack",
+      "confidence": "hoog",
+      "sourceClass": "official-framework",
+      "nationalScope": true
+    }
+  ],
+  "sourcePolicy": {
+    "official": [
+      "Platform CB'23",
+      "CROW (incl. 210)",
+      "NEN (publieke samenvatting)",
+      "Rijkswaterstaat",
+      "Rijksoverheid/Besluit bodemkwaliteit",
+      "NMD / milieudatabase.nl"
+    ],
+    "practiceOrAssumption": [
+      "gemeentelijke rapporten",
+      "nulmeting-foto's",
+      "leverancierskaarten",
+      "project-MKI-bladen",
+      "Assortimentswijzer / leverancierscatalogus"
+    ],
+    "neverAsOfficial": [
+      "AERIUS/stikstof",
+      "gunningsadvies",
+      "DNR-contract",
+      "valse homepage-URL als bron van lokaal PDF"
+    ]
+  }
+}

@@ -1,0 +1,557 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-07T14:20:00.000Z",
+  "publisher": "Civinaar CIV-RF",
+  "note": "NEN-/NTA-geïnspireerde schadeclassificatie voor RF-inspectie. Methodiek ernst×intensiteit×omvang volgt openbaar NEN 2767-kader (STOWA). Geen volledige NEN-gebrekenlijst of officiële NEN 2767-certificering. Productnormen en NTA 8713 als praktijkreferentie.",
+  "framework": {
+    "method": "NEN 2767-achtig: gebrektype + ernst (normatief gekoppeld) + intensiteit + omvang → overall schade / RF-cap",
+    "disclaimer": "CIV-RF is een inspectiehulp naast CB'23. Geen vervanging van officiële NEN-conditiemeting of constructeursbeoordeling.",
+    "intensityOptions": [
+      { "id": "begin", "label": "Begin (laag)", "rank": 1 },
+      { "id": "gevorderd", "label": "Gevorderd", "rank": 2 },
+      { "id": "eind", "label": "Eindstadium (hoog)", "rank": 3 }
+    ],
+    "extentOptions": [
+      { "id": "lokaal", "label": "Lokaal (<10%)", "rank": 1, "pctMax": 10 },
+      { "id": "beperkt", "label": "Beperkt (10–30%)", "rank": 2, "pctMax": 30 },
+      { "id": "aanzienlijk", "label": "Aanzienlijk (30–70%)", "rank": 3, "pctMax": 70 },
+      { "id": "overheersend", "label": "Overheersend (>70%)", "rank": 4, "pctMax": 100 }
+    ],
+    "severityRanks": {
+      "gering": 1,
+      "serieus": 2,
+      "ernstig": 3
+    }
+  },
+  "sources": [
+    {
+      "id": "nen-2767",
+      "name": "NEN 2767 — Conditiemeting (methodiek)",
+      "url": "https://www.nen.nl/bouw/beheer-en-onderhoud/conditiemeting",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "stowa-nen-2767",
+      "name": "STOWA Handreiking NEN 2767",
+      "url": "https://www.stowa.nl/sites/default/files/assets/PUBLICATIES/Publicaties%202021/STOWA%202021-22%20NEN%202767.pdf",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "nta-8713",
+      "name": "NTA 8713:2023 — Hergebruik constructiestaal",
+      "url": "https://www.nen.nl/nta-8713-2023-nl-307691",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "nta-8713-handleiding",
+      "name": "Bouwakkoord Staal — Handleiding NTA 8713",
+      "url": "https://bouwakkoordstaal.nl/handleiding-nta-87132023-hergebruik-van-constructiestaal",
+      "sourceClass": "practice"
+    },
+    {
+      "id": "iso-8501",
+      "name": "ISO 8501 — Roestgraden staal",
+      "url": "https://www.nen.nl/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "nen-en-1338",
+      "name": "NEN-EN 1338 — Betonstraatstenen",
+      "url": "https://www.nen.nl/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "nen-en-1339",
+      "name": "NEN-EN 1339 — Betontegels",
+      "url": "https://www.nen.nl/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "nen-en-1340",
+      "name": "NEN-EN 1340 — Boordstenen van beton",
+      "url": "https://www.nen.nl/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "nen-en-771",
+      "name": "NEN-EN 771 — Metselstenen",
+      "url": "https://www.nen.nl/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "cur-72",
+      "name": "CUR Aanbeveling 72 — Inspectie betonconstructies",
+      "url": "https://www.crow.nl/Onderwerpen/civiele-constructies/crow-cur/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "rce-beton",
+      "name": "RCE Beton-inspectie",
+      "url": "https://kennis.cultureelerfgoed.nl/index.php/Beton_-_inspectie",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "nen-5493",
+      "name": "NEN 5493 — Duurzaamheidsklasse hout",
+      "url": "https://www.nen.nl/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "crow-210",
+      "name": "CROW 210 — Teerhoudend asfalt",
+      "url": "https://www.crow.nl/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "nen-en-13108",
+      "name": "NEN-EN 13108 — Asfaltmengsels / PCR",
+      "url": "https://www.nen.nl/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "nen-en-13476",
+      "name": "NEN-EN 13476 — Kunststof riolering",
+      "url": "https://www.nen.nl/",
+      "sourceClass": "official-framework"
+    },
+    {
+      "id": "rws-vorstschade",
+      "name": "RWS Vorstschade",
+      "url": "https://www.rijkswaterstaat.nl/wegen/wegbeheer/winter-op-de-weg/vorstschade",
+      "sourceClass": "official-framework"
+    }
+  ],
+  "families": {
+    "asfalt": {
+      "title": "Asfalt / bitumen",
+      "normRefs": ["CROW 210", "NEN-EN 13108", "NEN 2767-methodiek", "RWS vorstschade"],
+      "identifyHints": [
+        "Zoek scheuren (langs/dwars/rand), raveling, gaten, open naden, spoorvorming, vorstschade",
+        "Teer/PAK eerst (CROW 210) — hard afkeur bij teerhoudend"
+      ],
+      "hardRejectRules": [
+        {
+          "id": "asfalt-teer-pak",
+          "label": "Teerhoudend / PAK ≥250 mg/kg ds",
+          "normRef": "CROW 210",
+          "forceRf4": true,
+          "keywords": ["teerhoudend", "pak ≥250", "pak >=250", "teer aanwezig"]
+        }
+      ],
+      "damageTypes": [
+        {
+          "code": "ASF-SCHEUR",
+          "label": "Scheuren (langs/dwars/rand)",
+          "keywords": ["scheur", "langs", "dwars", "edge crack", "transverse", "longitudinal"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_asfalt_scheurtype", "base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-2767", "rws-vorstschade"]
+        },
+        {
+          "code": "ASF-RAVEL",
+          "label": "Raveling / steentjes los",
+          "keywords": ["ravel", "rafel", "steentjes los", "bindmiddel"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_asfalt_binding", "base_schade", "spec_nen_intensiteit"],
+          "citations": ["rws-vorstschade", "nen-en-13108"]
+        },
+        {
+          "code": "ASF-GAT",
+          "label": "Gaten / potholes",
+          "keywords": ["gat", "pothole", "kuil"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["base_schade", "spec_nen_omvang"],
+          "citations": ["nen-2767", "rws-vorstschade"]
+        },
+        {
+          "code": "ASF-VORST",
+          "label": "Vorst-dooischade",
+          "keywords": ["vorst", "dooi", "bros"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_asfalt_vorst", "base_schade"],
+          "citations": ["rws-vorstschade"]
+        },
+        {
+          "code": "ASF-SPOOR",
+          "label": "Spoorvorming",
+          "keywords": ["spoor", "rutting"],
+          "severityNorm": "serieus",
+          "checklistIds": ["base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-2767"]
+        }
+      ]
+    },
+    "beton": {
+      "title": "Betonproduct / prefab",
+      "normRefs": ["CUR 72", "RCE beton-inspectie", "NEN-EN 1338/1339", "NEN 2767-methodiek"],
+      "identifyHints": [
+        "Scheuren (haar/langs/dwars), afbrokkeling, delaminatie, vorst, wapeningscorrosie",
+        "Bekloppen bij vermoeden holten (RCE/CUR 72)"
+      ],
+      "hardRejectRules": [],
+      "damageTypes": [
+        {
+          "code": "BET-SCHEUR",
+          "label": "Scheuren",
+          "keywords": ["scheur", "haar", "langs", "dwars", "diagonal"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_beton_scheurtype", "base_schade", "spec_nen_intensiteit"],
+          "citations": ["cur-72", "rce-beton", "nen-2767"]
+        },
+        {
+          "code": "BET-AFBROK",
+          "label": "Afbrokkeling / kantbeschadiging",
+          "keywords": ["afbrokkel", "kant", "chip", "brokkel"],
+          "severityNorm": "serieus",
+          "checklistIds": ["base_schade", "spec_nen_omvang"],
+          "citations": ["nen-en-1338", "nen-2767"]
+        },
+        {
+          "code": "BET-DELAM",
+          "label": "Delaminatie / holten",
+          "keywords": ["delamin", "holte", "schilfer", "beklop"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["base_schade", "spec_nen_intensiteit"],
+          "citations": ["rce-beton", "cur-72"]
+        },
+        {
+          "code": "BET-VORST",
+          "label": "Vorst-dooischade",
+          "keywords": ["vorst", "spalling", "afschilfer"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_1338_vorst", "spec_1339_vorst", "base_schade"],
+          "citations": ["nen-en-1338", "nen-en-1339"]
+        },
+        {
+          "code": "BET-CORROS",
+          "label": "Wapeningscorrosie",
+          "keywords": ["corrosie", "wapening", "roest", "carbonat", "chloride"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["spec_beton_wapening", "spec_beton_chloride", "base_schade"],
+          "citations": ["rce-beton", "cur-72"]
+        }
+      ]
+    },
+    "band": {
+      "title": "Trottoir-/opsluitband",
+      "normRefs": ["NEN-EN 1340", "NEN 2767-methodiek"],
+      "identifyHints": [
+        "Breuk over lengte, afgeschoven koppen, vorstschade, zetting"
+      ],
+      "hardRejectRules": [],
+      "damageTypes": [
+        {
+          "code": "BND-BREUK",
+          "label": "Breuk over dwarsrichting",
+          "keywords": ["breuk", "gebroken", "doorscheur"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-en-1340", "nen-2767"]
+        },
+        {
+          "code": "BND-KOP",
+          "label": "Afgeschoven koppen / kant",
+          "keywords": ["afgeschoven", "kop", "kant"],
+          "severityNorm": "serieus",
+          "checklistIds": ["base_schade", "spec_nen_omvang"],
+          "citations": ["nen-en-1340"]
+        },
+        {
+          "code": "BND-VORST",
+          "label": "Vorstschade",
+          "keywords": ["vorst", "afbrokkel"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_1340_vorst", "base_schade"],
+          "citations": ["nen-en-1340"]
+        }
+      ]
+    },
+    "baksteen": {
+      "title": "Straatbaksteen / klinker",
+      "normRefs": ["NEN-EN 771", "NEN 2767-methodiek", "meetbrief hergebruik-praktijk"],
+      "identifyHints": [
+        "Vorstschade randen, breuk, afgeschoven hoeken, slijtage; >50% defect → partijuitsluiting (praktijk)"
+      ],
+      "hardRejectRules": [
+        {
+          "id": "sbs-50pct",
+          "label": ">50% gebreken in steekproef",
+          "normRef": "Meetbrief hergebruik-praktijk",
+          "forceRf4": true,
+          "keywords": [">50%", "meer dan 50%", "partij uitsluiten"]
+        }
+      ],
+      "damageTypes": [
+        {
+          "code": "SBS-VORST",
+          "label": "Vorst-dooischade",
+          "keywords": ["vorst", "spalling", "afbrokkel"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_sbs_vorst", "spec_metsel_vorst", "base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-en-771", "nen-2767"]
+        },
+        {
+          "code": "SBS-BREUK",
+          "label": "Breuk / afgeschoven hoek",
+          "keywords": ["breuk", "hoek", "chip"],
+          "severityNorm": "serieus",
+          "checklistIds": ["base_schade", "spec_sbs_defect_pct"],
+          "citations": ["nen-2767"]
+        },
+        {
+          "code": "SBS-SLIJT",
+          "label": "Slijtage oppervlak",
+          "keywords": ["slijtage", "afgesleten"],
+          "severityNorm": "gering",
+          "checklistIds": ["base_visueel", "base_schade"],
+          "citations": ["nen-2767"]
+        }
+      ]
+    },
+    "hout": {
+      "title": "Hout / composiet",
+      "normRefs": ["NEN 5493", "NMD 5.1", "NEN 2767-methodiek"],
+      "identifyHints": [
+        "Rot, vocht, schimmel, insecten, scheuren, vervorming; noteer duurzaamheidsklasse indien bekend"
+      ],
+      "hardRejectRules": [],
+      "damageTypes": [
+        {
+          "code": "HOUT-ROT",
+          "label": "Rot / schimmel",
+          "keywords": ["rot", "schimmel", "verrot"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["spec_hout_rot", "base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-5493", "nen-2767"]
+        },
+        {
+          "code": "HOUT-VOCHT",
+          "label": "Vochtbelasting",
+          "keywords": ["vocht", "nat", "vochtig"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_hout_vocht", "base_schade"],
+          "citations": ["nen-5493"]
+        },
+        {
+          "code": "HOUT-SCHEUR",
+          "label": "Scheuren / delaminatie",
+          "keywords": ["scheur", "delamin", "splijt"],
+          "severityNorm": "serieus",
+          "checklistIds": ["base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-2767"]
+        },
+        {
+          "code": "HOUT-VERVORM",
+          "label": "Vervorming / kromtrekken",
+          "keywords": ["vervorm", "krom", "buig"],
+          "severityNorm": "serieus",
+          "checklistIds": ["base_schade", "spec_nen_omvang"],
+          "citations": ["nen-2767"]
+        }
+      ]
+    },
+    "staal": {
+      "title": "Staal / constructiemetaal",
+      "normRefs": ["NTA 8713:2023", "ISO 8501", "NEN 2767-methodiek", "NEN-EN 1993"],
+      "identifyHints": [
+        "Corrosie: intensiteit × omvang (NEN 2767) + ISO 8501-graad",
+        "NTA 8713: uitsluitingen (dynamisch, gietijzer, plastische vervorming, pre-1955)"
+      ],
+      "hardRejectRules": [
+        {
+          "id": "nta-dynamisch",
+          "label": "Uit dynamisch belaste constructie (brug/mast e.d.)",
+          "normRef": "NTA 8713:2023",
+          "forceRf4": true,
+          "keywords": ["dynamisch", "vermoeiing", "brugmast", "uitgesloten hergebruik"]
+        },
+        {
+          "id": "nta-gietijzer",
+          "label": "Gietijzer / smeedijzer / pre-1955",
+          "normRef": "NTA 8713:2023",
+          "forceRf4": true,
+          "keywords": ["gietijzer", "smeedijzer", "voor 1955", "pre-1955", "vóór 1955"]
+        },
+        {
+          "id": "nta-plastisch",
+          "label": "Plastisch vervormd (niet getoogd)",
+          "normRef": "NTA 8713:2023",
+          "forceRf4": true,
+          "keywords": ["plastisch vervormd", "plastische vervorming"]
+        }
+      ],
+      "damageTypes": [
+        {
+          "code": "STL-CORROS",
+          "label": "Corrosie / roest",
+          "keywords": ["roest", "corrosie", "pitting", "grade"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_staal_corrosie", "spec_nen_intensiteit", "spec_nen_omvang", "base_schade"],
+          "citations": ["iso-8501", "nen-2767", "nta-8713"]
+        },
+        {
+          "code": "STL-LAS",
+          "label": "Las- / verbindingsgebrek",
+          "keywords": ["las", "scheur las", "bout"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["spec_staal_ndt", "base_schade"],
+          "citations": ["nta-8713", "nen-2767"]
+        },
+        {
+          "code": "STL-VERVORM",
+          "label": "Vervorming / deuk",
+          "keywords": ["vervorm", "deuk", "gebogen"],
+          "severityNorm": "serieus",
+          "checklistIds": ["base_schade", "spec_nen_intensiteit"],
+          "citations": ["nta-8713", "nen-2767"]
+        },
+        {
+          "code": "STL-COATING",
+          "label": "Coating / verzinking beschadigd",
+          "keywords": ["coating", "zink", "verzink", "verflaag"],
+          "severityNorm": "gering",
+          "checklistIds": ["base_visueel", "base_schade"],
+          "citations": ["nen-2767"]
+        }
+      ]
+    },
+    "kunststof": {
+      "title": "Kunststof leiding",
+      "normRefs": ["NEN-EN 13476", "NEN 2767-methodiek"],
+      "identifyHints": [
+        "Ovaliteit, scheuren, UV-brosheid, beschadigde mof/las"
+      ],
+      "hardRejectRules": [],
+      "damageTypes": [
+        {
+          "code": "KST-OVAL",
+          "label": "Ovaliteit / deformatie",
+          "keywords": ["ovali", "deformatie", "deuk", "plat"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_kst_deformatie", "base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-en-13476"]
+        },
+        {
+          "code": "KST-SCHEUR",
+          "label": "Scheuren",
+          "keywords": ["scheur", "gescheurd"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-2767", "nen-en-13476"]
+        },
+        {
+          "code": "KST-UV",
+          "label": "UV-schade / brosheid",
+          "keywords": ["uv", "bros", "verkleurd"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_kst_uv", "base_schade"],
+          "citations": ["nen-2767"]
+        },
+        {
+          "code": "KST-MOF",
+          "label": "Mof / las beschadigd",
+          "keywords": ["mof", "las", "verbinding", "lek"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["spec_kst_mof", "base_schade"],
+          "citations": ["nen-en-13476"]
+        }
+      ]
+    },
+    "natuursteen": {
+      "title": "Natuursteen",
+      "normRefs": ["NEN 2767-methodiek"],
+      "identifyHints": [
+        "Breuk, schilfering, slijtage, vervuiling, vorstschade"
+      ],
+      "hardRejectRules": [],
+      "damageTypes": [
+        {
+          "code": "NAT-BREUK",
+          "label": "Breuk / scheur",
+          "keywords": ["breuk", "scheur"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-2767"]
+        },
+        {
+          "code": "NAT-SCHILFER",
+          "label": "Schilfering / afschilfering",
+          "keywords": ["schilfer", "afschilfer"],
+          "severityNorm": "serieus",
+          "checklistIds": ["base_schade", "spec_nen_omvang"],
+          "citations": ["nen-2767"]
+        },
+        {
+          "code": "NAT-SLIJT",
+          "label": "Slijtage / gladheid",
+          "keywords": ["slijt", "glad"],
+          "severityNorm": "gering",
+          "checklistIds": ["base_visueel", "base_schade"],
+          "citations": ["nen-2767"]
+        }
+      ]
+    },
+    "groen": {
+      "title": "Groen / grond",
+      "normRefs": ["NEN 2767-methodiek"],
+      "identifyHints": ["Vervuiling (puin/plastics), wortels, vitaliteit"],
+      "hardRejectRules": [],
+      "damageTypes": [
+        {
+          "code": "GRN-VERVUIL",
+          "label": "Vervuiling / vreemde bestanddelen",
+          "keywords": ["puin", "plastic", "verontreinig"],
+          "severityNorm": "serieus",
+          "checklistIds": ["spec_grond_veront", "base_schade"],
+          "citations": ["nen-2767"]
+        }
+      ]
+    },
+    "elektra": {
+      "title": "Elektra / kabel",
+      "normRefs": ["NEN 2767-methodiek"],
+      "identifyHints": ["Mantelbeschadiging, blootliggende aders, UV"],
+      "hardRejectRules": [],
+      "damageTypes": [
+        {
+          "code": "ELK-MANTEL",
+          "label": "Mantelbeschadiging",
+          "keywords": ["mantel", "bloot", "ader", "kabel"],
+          "severityNorm": "ernstig",
+          "checklistIds": ["base_schade", "spec_nen_intensiteit"],
+          "citations": ["nen-2767"]
+        }
+      ]
+    },
+    "overig": {
+      "title": "Overig GWW",
+      "normRefs": ["NEN 2767-methodiek", "CB'23"],
+      "identifyHints": [
+        "Noteer gebrektype, intensiteit (begin/gevorderd/eind) en omvang (%)"
+      ],
+      "hardRejectRules": [],
+      "damageTypes": [
+        {
+          "code": "OVG-ALG",
+          "label": "Algemene schade / gebrek",
+          "keywords": ["schade", "gebrek", "scheur", "breuk"],
+          "severityNorm": "serieus",
+          "checklistIds": ["base_schade", "spec_nen_intensiteit", "spec_nen_omvang"],
+          "citations": ["nen-2767"]
+        }
+      ]
+    }
+  },
+  "rfImpactMatrix": {
+    "comment": "Worst-case over codes: severityNorm × intensity × extent → base_schade value (2=geen, 1=licht, 0=ernstig) en optionele maxRf",
+    "rules": [
+      { "minSeverityRank": 3, "minIntensityRank": 2, "minExtentRank": 2, "baseSchade": 0, "maxRf": 4 },
+      { "minSeverityRank": 3, "minIntensityRank": 1, "minExtentRank": 1, "baseSchade": 0, "maxRf": 3 },
+      { "minSeverityRank": 2, "minIntensityRank": 3, "minExtentRank": 3, "baseSchade": 0, "maxRf": 3 },
+      { "minSeverityRank": 2, "minIntensityRank": 2, "minExtentRank": 2, "baseSchade": 1, "maxRf": 3 },
+      { "minSeverityRank": 2, "minIntensityRank": 1, "minExtentRank": 1, "baseSchade": 1, "maxRf": 2 },
+      { "minSeverityRank": 1, "minIntensityRank": 3, "minExtentRank": 3, "baseSchade": 1, "maxRf": 2 },
+      { "minSeverityRank": 1, "minIntensityRank": 1, "minExtentRank": 1, "baseSchade": 2, "maxRf": 1 }
+    ]
+  }
+}
